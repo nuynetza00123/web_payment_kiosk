@@ -23,6 +23,7 @@ const messages = {
       IDcard: "ID Card",
       Scan: "Scan QR Code",
       PleaseScan: "Please Scan QR Code",
+      Punnpay: "Parking Payment",
     },
   },
   th: {
@@ -45,6 +46,7 @@ const messages = {
       IDcard: "บัตรประชาชน",
       Scan: "สแกนคิวอาร์โค้ด",
       PleaseScan: "กรุณาสแกนคิวอาร์โค้ด",
+      Punnpay: "Parking Payment",
     },
   },
 };

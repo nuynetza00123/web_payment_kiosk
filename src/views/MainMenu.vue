@@ -27,7 +27,7 @@
                     style="padding-top: 0rem;
                       margin-left: auto;
                       margin-right: auto;"
-                    src="@/assets/OneBangkokLogo.svg"
+                    src="@/assets/Logo_PUNN.jpg"
                   />
                 </v-col>
               </v-row>
@@ -36,11 +36,11 @@
                   <p style="color: #126496;font-size: 60px;font-weight: bold;">
                     <!-- ลงทะเบียนเข้าอาคาร -->
                     <!-- One Bangkok Register -->
-                    {{ $t("message.OneBangkokRegister") }}
+                    {{ $t("message.Punnpay") }}
                   </p>
                 </v-col>
               </v-row>
-              <v-row style="margin-top: 30%;">
+              <!-- <v-row style="margin-top: 30%;">
                 <v-col cols="12" md="12" style="text-align: center;">
                   <v-btn
                     color="primary"
@@ -53,8 +53,8 @@
                     >{{ $t("message.Register") }}</v-btn
                   >
                 </v-col>
-              </v-row>
-              <v-row >
+              </v-row> -->
+              <v-row style="margin-top: 40%;">
                 <v-col cols="12" md="12" style="text-align: center;">
                   <v-btn
                     color="primary"
@@ -62,8 +62,8 @@
                     router
                     width="620"
                     @click="GotoScan()"
-                    style="font-size: 45px;border-radius: 40px"
-                    height="100"
+                    style="font-size: 45px;border-radius: 50px"
+                    height="120"
                     >{{ $t("message.Scan") }}</v-btn
                   >
                 </v-col>
@@ -126,7 +126,6 @@ export default {
     };
   },
   mounted: function() {
-    this.GetIp();
     localStorage.setItem("LogId", '');
     // setInterval(() => {
     //   this.getCurrentDate();
