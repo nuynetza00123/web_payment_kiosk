@@ -140,6 +140,7 @@ export default {
     // setInterval(() => {
     //   this.getCurrentDate();
     // }, 1000);
+    this.SearchQrcode("2024030311355202");
   },
 
   methods: {
@@ -182,22 +183,16 @@ export default {
       let self = this;
       localStorage.setItem("LogId", data);
       let temp = {
-        logCarparkID: data,
+        search: data,
+        lostCard: false,
       };
       axios
-        .post(`${self.url}VMS/checkIsExitCarpark`, temp)
+        .post(`${self.url}Redemption/GetParkingDetail`, temp)
         .then(function(response) {
           if (response.data.status == 0) {
             // console.log(response.data.data);
-            if (response.data.data.trn_Exit_Status == 0) {
-              self.$router.push("/PDPAPage");
-            } else if (response.data.data.trn_Exit_Status == 1) {
-              console.log(response.data.message);
-              self.message = response.data.message;
-              setTimeout(() => {
-                self.$router.push("/MainMenu");
-              }, 5000);
-            }
+
+            self.$router.push("/DetailCarpark/"+ data);
           }
           if (response.data.status == 1) {
             console.log(response.data.data);

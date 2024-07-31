@@ -9,6 +9,8 @@ import PrintQr from "./views/PrintQr";
 import PDPAPage from "./views/PDPAPage";
 import ScanQrcode from "./views/ScanQrcode";
 import NationalPassport from "./views/NationalPassport";
+import DetailCarpark from "./views/DetailCarpark";
+import Qrcode from "./views/Qrcode";
 
 // import store from "./store"
 Vue.use(Router);
@@ -61,6 +63,16 @@ const router = new Router({
       path: "/ScanQrcode",
       name: "ScanQrcode",
       component: ScanQrcode
+    },
+    {
+      path: "/DetailCarpark/:id",
+      name: "DetailCarpark",
+      component: DetailCarpark
+    },
+    {
+      path: "/Qrcode/:id",
+      name: "Qrcode",
+      component: Qrcode
     },
     {
       path: "/NationalPassport",

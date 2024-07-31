@@ -23,7 +23,7 @@
     "qrious": "^4.0.2",
     "simple-keyboard": "^3.4.142",
     "simple-keyboard-layouts": "^1.15.165",
-    "sweetalert2": "^11.4.24",
+    "sweetalert2": "^11.12.3",
     "v-mask": "^2.0.2",
     "vue": "^2.6.10",
     "vue-cryptojs": "^2.1.3",

@@ -19,11 +19,11 @@
 
             <ChangeLanguage />
 
-              <v-row style="margin-top: 20%;">
+              <v-row style="margin-top: 10%;">
                 <v-col cols="12" md="12" style="text-align: center;">
                   <img
                     height="auto"
-                    width="850px"
+                    width="650px"
                     style="padding-top: 0rem;
                       margin-left: auto;
                       margin-right: auto;"
@@ -31,7 +31,7 @@
                   />
                 </v-col>
               </v-row>
-              <v-row style="margin-top: 20%;">
+              <v-row style="margin-top: 10%;">
                 <v-col cols="12" md="12" style="text-align: center;">
                   <p style="color: #126496;font-size: 60px;font-weight: bold;">
                     <!-- ลงทะเบียนเข้าอาคาร -->
@@ -54,7 +54,7 @@
                   >
                 </v-col>
               </v-row> -->
-              <v-row style="margin-top: 40%;">
+              <v-row style="margin-top: 5%;">
                 <v-col cols="12" md="12" style="text-align: center;">
                   <v-btn
                     color="primary"
@@ -64,23 +64,23 @@
                     @click="GotoScan()"
                     style="font-size: 45px;border-radius: 50px"
                     height="120"
-                    >{{ $t("message.Scan") }}</v-btn
+                    >{{ $t("message.Start") }}</v-btn
                   >
                 </v-col>
               </v-row>
-              <!-- <v-row>
-                <v-col cols="12" md="12" style="text-align: center;">
-                  <v-btn
-                    color="primary"
-                    class="white--text mt-2 text-capitalize"
-                    router
-                    width="420"
-                    style="font-size: 25px;border-radius: 30px"
-                    height="70"
-                    >สแกน คิวอาร์โค้ด</v-btn
-                  >
+              <v-row style="margin-top: 10%;">
+                <v-col cols="12" md="12" >
+                  <img
+                    height="auto"
+                    width="892px"
+                    style="padding-top: 0rem;
+                      margin-left: auto;
+                      margin-right: auto;
+                      border-radius: 50px;"
+                    src="@/assets/dribbble_2.gif"
+                  />
                 </v-col>
-              </v-row> -->
+              </v-row>
             </v-card>
           </v-row>
         </v-container>
