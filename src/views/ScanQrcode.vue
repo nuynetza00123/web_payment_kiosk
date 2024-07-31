@@ -140,7 +140,7 @@ export default {
     // setInterval(() => {
     //   this.getCurrentDate();
     // }, 1000);
-    this.SearchQrcode("https://punn-parking.fs-omc.io/ParkingFee/2024030311355202");
+    // this.SearchQrcode("https://punn-parking.fs-omc.io/ParkingFee/2024030311355202");
   },
 
   methods: {
