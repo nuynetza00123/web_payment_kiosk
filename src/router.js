@@ -50,7 +50,7 @@ const router = new Router({
       component: NationalIDCard
     },
     {
-      path: "/PrintQr",
+      path: "/PrintQr/:id",
       name: "PrintQr",
       component: PrintQr
     },
@@ -74,6 +74,7 @@ const router = new Router({
       name: "Qrcode",
       component: Qrcode
     },
+
     {
       path: "/NationalPassport",
       name: "NationalPassport",

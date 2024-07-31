@@ -19,7 +19,7 @@
               class="align-center pa-4 mx-auto"
             >
               <ChangeLanguage />
-              <v-row style="margin-top: 10%">
+              <v-row style="margin-top: 5%">
                 <v-col
                   cols="12"
                   md="12"
@@ -30,10 +30,10 @@
                       font-weight: bold;
                     "
                 >
-                  {{ $t("message.QRCodeVisitors") }}
+                  {{ $t("message.Receipt") }}
                 </v-col>
               </v-row>
-              <v-row style="margin-top: 10%">
+              <v-row style="margin-top: 5%">
                 <v-col
                   cols="12"
                   md="12"
@@ -41,137 +41,403 @@
     justify-content: center;
 "
                 >
-                  <v-card
-                    v-if="show"
-                    id="capture"
-                    elevation="0"
-                    style="
-                            background-color: rgb(255, 255, 255) !important;height: 500px;page-break-after: always;width: 350px;padding: 0;
-                          "
-                  >
+            
                     <v-col
                       cols="12"
                       md="12"
                       sm="12"
-                      lg="12"
-                      style="background-color: #fff"
+                      align="center"
+                      class="rounded-sm"
                     >
-                      <v-img
-                        height="38"
-                        width="400"
-                        src="@/assets/logo-01.png"
-                      ></v-img>
-                    </v-col>
-                    <v-col
-                      cols="12"
-                      md="12"
-                      sm="12"
-                      lg="12"
-                      style="
-                              text-align: center;
-                              padding: 0;
-                              background-color: #fff;
-                            "
-                    >
-                      <label style="font-size: 25px;">{{ tenantName }}</label>
-                    </v-col>
-                    <v-col
-                      cols="12"
-                      md="12"
-                      sm="12"
-                      lg="12"
-                      style="
-                              text-align: center;
-                              padding: 0;
-                              background-color: #fff;
-                            "
-                    >
-                      <label style="background-color: #fff;font-size: 20px;"
-                        >Floor : {{ floorName }} / Zone : {{ zoneName }}</label
+                      <v-row
+                        cols="12"
+                        xs="12"
+                        sm="12"
+                        md="12"
+                        justify="center"
+                        class="mt-2"
                       >
-                    </v-col>
-                    <v-col
-                      cols="12"
-                      md="12"
-                      sm="12"
-                      lg="12"
-                      style="
-                              text-align: center;
-                              padding: 0;
-                              display: grid;
-                              justify-content: space-evenly;
-                              background-color: #fff;
-                            "
-                    >
-                      <qr-code
-                        style="margin: 30px;"
-                        :size="200"
-                        :text="Qrcode"
-                        error-level="L"
-                      ></qr-code>
-                    </v-col>
-                    <v-col
-                      cols="12"
-                      md="12"
-                      sm="12"
-                      lg="12"
-                      style="
-                              text-align: center;
-                              padding: 0;
-                              background-color: #fff;
-                            "
-                    >
-                      <label style="font-size: 20px;"
-                        >Issue Date : {{ ChangeFormatDate(startDate) }}</label
-                      >
-                    </v-col>
-                    <v-col
-                      cols="12"
-                      md="12"
-                      sm="12"
-                      lg="12"
-                      style="
-                              text-align: center;
-                              padding: 0;
-                              background-color: #fff;
-                            "
-                    >
-                      <label style="font-size: 20px;"
-                        >Expiry Date : {{ ChangeFormatDate(endDate) }}</label
-                      >
-                    </v-col>
-                    <v-col
-                      cols="12"
-                      md="12"
-                      sm="12"
-                      lg="12"
-                      style="
-                              text-align: center;
-                              background-color: #fff;
-                              font-size: 18px;
-                            "
-                    >
-                      <label>** One time access permit **</label>
-                    </v-col>
-                  </v-card>
+                        <v-col cols="12" md="10" sm="10" align="center">
+                          <v-card
+                            id="capture"
+                            class="mx-auto"
+                            height="auto"
+                            width="800"
+                            style="padding: 10px;background-color: white;font-size: 26px;"
+                          >
+                            <v-row cols="12" sm="12" md="12" justify="center">
+                              <!-- <img class="mt-5" :src="imagesLogo" width="300" height="auto" /> -->
+                            </v-row>
+                            <v-row cols="12" md="12" justify="center">
+                              <v-col
+                                cols="12"
+                                md="10"
+                                sm="10"
+                                xs="10"
+                                align="center"
+                              >
+                              PUNN Smart Workspace
+                              </v-col>
+                              <v-col
+                                cols="12"
+                                md="10"
+                                sm="10"
+                                xs="10"
+                                align="left"
+                              >
+                              1152 Rama IV Road, Khlong Toei, Bangkok 10110
+                                <br />
+                               
+                                Tel. +66(0)82 542 5692
+                                <br />
+Email. info@punnspaces.com
+                                <br />
+                              </v-col>
+                            </v-row>
+                            <v-row cols="12" md="12" sm="12" justify="center">
+                              <v-col
+                                cols="6"
+                                md="6"
+                                sm="6"
+                                align="left"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                TERMINAL ID
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="4"
+                                sm="4"
+                                align="right"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                {{ DetailsReceipt.trn_Ent_Terminal_ID }}
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="6"
+                                sm="6"
+                                align="left"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                TAX INVOICE (ABB.) ID
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="4"
+                                sm="4"
+                                align="right"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                {{ "010556204576101" }}
+                              </v-col>
 
-                  <v-card
-                    v-if="!show"
-                    elevation="0"
-                    style="
-                            background-color: rgb(255, 255, 255) !important;height: 500px;page-break-after: always;width: 500px;padding: 0;font-size: 50px;
-                      color: red;
-                      font-weight: bold;
-                          "
-                  >
-                    {{ "*" + message }}
-                  </v-card>
+                              <v-col
+                                cols="6"
+                                md="6"
+                                sm="6"
+                                align="left"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                TAX NO
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="4"
+                                sm="4"
+                                align="right"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                {{ DetailsReceipt.trn_Tax_No }}
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="6"
+                                sm="6"
+                                align="left"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                BILL DATE
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="4"
+                                sm="4"
+                                align="right"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                {{
+                                  ChangeFormatDate(
+                                    DetailsReceipt.trn_CreateTime
+                                  )
+                                }}
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="6"
+                                sm="6"
+                                align="left"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                USER ID
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="4"
+                                sm="4"
+                                align="right"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                {{ DetailsReceipt.trn_User_ID }}
+                              </v-col>
+
+                              <v-col
+                                cols="6"
+                                md="6"
+                                sm="6"
+                                align="left"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                CAR-ID
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="4"
+                                sm="4"
+                                align="right"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                {{ DetailsReceipt.trn_Car_No }}
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="6"
+                                sm="6"
+                                align="left"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                TICKET NO.
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="4"
+                                sm="4"
+                                align="right"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                {{ DetailsReceipt.trn_Ticket_No }}
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="6"
+                                sm="6"
+                                align="left"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                ENTRY TIME
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="4"
+                                sm="4"
+                                align="right"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                {{
+                                  ChangeFormatDate(DetailsReceipt.trn_Ent_Date)
+                                }}
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="6"
+                                sm="6"
+                                align="left"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                PAID TIME
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="4"
+                                sm="4"
+                                align="right"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                {{
+                                  ChangeFormatDate(
+                                    DetailsReceipt.trn_CreateTime
+                                  )
+                                }}
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="6"
+                                sm="6"
+                                align="left"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                PARK TIME
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="4"
+                                sm="4"
+                                align="right"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                {{
+                                  DetailsReceipt.trn_Park_HH
+                                    .toString()
+                                    .padStart(2, "0") +
+                                    " : " +
+                                    DetailsReceipt.trn_Park_MM
+                                      .toString()
+                                      .padStart(2, "0")
+                                }}
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="6"
+                                sm="6"
+                                align="left"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                STAMP
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="4"
+                                sm="4"
+                                align="right"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                {{ DetailsReceipt.trn_Rate_Code }}
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="6"
+                                sm="6"
+                                align="left"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                SUBTOTAL (BAHT)
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="4"
+                                sm="4"
+                                align="right"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                {{ DetailsReceipt.trn_SubTotal }}
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="6"
+                                sm="6"
+                                align="left"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                DISCOUNT (BAHT)
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="4"
+                                sm="4"
+                                align="right"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                {{ DetailsReceipt.trn_Discount }}
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="6"
+                                sm="6"
+                                align="left"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                TOTAL (BAHT)
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="4"
+                                sm="4"
+                                align="right"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                {{ DetailsReceipt.trn_Total }}
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="6"
+                                sm="6"
+                                align="left"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                VAT
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="4"
+                                sm="4"
+                                align="right"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                {{ DetailsReceipt.trn_Vat }}
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="6"
+                                sm="6"
+                                align="left"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                TOTAL VAT INCLUDED
+                              </v-col>
+                              <v-col
+                                cols="6"
+                                md="4"
+                                sm="4"
+                                align="right"
+                                style="padding-top: 0px;padding-bottom: 0px;"
+                              >
+                                {{ DetailsReceipt.trn_Amount }}
+                              </v-col>
+                            </v-row>
+                            <br>
+                            <hr style="width: 80%;" />
+
+                            <v-col cols="12" md="12" align="center">
+                              THANK YOU FOR PARKING
+                            </v-col>
+                            <v-row style="height: 10px;"> </v-row>
+                          </v-card>
+                          <!-- <v-btn
+                            tile
+                            color="blue"
+                            class="mt-5"
+                            style="width:180px;color: white;margin: 10px;"
+                            @click="print()"
+                          >
+                            {{ $t("message.Save") }}
+                          </v-btn>
+                          <v-btn
+                            tile
+                            color="success"
+                            class="mt-5"
+                            style="width:180px;color: white;margin: 10px;"
+                            @click="backtohomepage()"
+                          >
+                            {{ $t("message.mainPage") }}
+                          </v-btn> -->
+                        </v-col>
+                      </v-row>
+                    </v-col>
                 </v-col>
               </v-row>
-              <v-row style="margin-top: 15%">
-                <v-col cols="12" md="12" style="text-align: center">
+              <v-row >
+                <v-col cols="12" md="12" style="text-align: center;margin-top: 30%;">
                   <v-btn
-                    v-if="show"
                     color="primary"
                     class="white--text mt-2 text-capitalize"
                     router
@@ -182,11 +448,11 @@
                     height="100"
                     @click="print()"
                   >
-                    {{ $t("message.PrintQRCode") }}</v-btn
+                    {{ $t("message.PrintReceipt") }}</v-btn
                   >
                 </v-col>
               </v-row>
-              <v-row>
+              <!-- <v-row>
                 <v-col cols="12" md="12" style="text-align: center">
                   <v-btn
                     color="primary"
@@ -199,7 +465,7 @@
                     >{{ $t("message.Back") }}</v-btn
                   >
                 </v-col>
-              </v-row>
+              </v-row> -->
             </v-card>
           </v-row>
         </v-container>
@@ -213,7 +479,7 @@ import enurl from "@/api/environment";
 import html2canvas from "html2canvas";
 import ChangeLanguage from "@/components/ChangeLanguage";
 export default {
-  name: "CapturePerson",
+  name: "PrintQr",
   components: {
     ChangeLanguage,
   },
@@ -238,84 +504,114 @@ export default {
       data: [],
       show: false,
       message: "",
+      dialog: false,
+
+      receipt: false,
+
+      vehicleShow: true,
+      LoadingDialog: false,
+      AlertDialog: false,
+      TypeAlert: null,
+      MessageAlert: "",
+
+      response: "",
+      search: "",
+      LogCarparkID: "",
+      discount: "",
+      rateDetailTH: "",
+      rateDetailEN: "",
+
+      overlay: false,
+      transactionNo: "",
+      invoiceNo: "",
+      transactionDate: "",
+      outBeforeTime: "",
+      merchantId: "",
+      merchantName: "",
+      paymentChannel: "",
+      amount: 0,
+      paidAmount: 0,
+      fee: 0.0,
+      feeVat: 0.0,
+      balance: 0.0,
+      transactionStatusId: 0,
+      description: "0",
+      deviceProfileId: null,
+
+      payComplated: false,
+
+      TerminalID: null,
+      DatetimeIn: "",
+      MemberType: null,
+      CarType: null,
+      TicketNo: "",
+      DateTime: "",
+      TimeIn: "",
+      Duration: "",
+      CarLicense: "",
+      VehicleName: "",
+      RateCodeString: "",
+      RateDetail: "",
+      Total: "",
+      SpendingValue: "",
+      Receiptmodel: "",
+      imagesLogo: "",
+      ShowReceipt: "OB",
+      AlldataDetails: [],
+      AlldataDetailsReceipt: [],
+      DetailsReceipt: [],
     };
   },
   mounted: function() {
     let self = this;
-    // self.createCameraElement();
-    console.log(self.$route.params.data);
-    self.data = self.$route.params.data;
-    self.floorName = self.data.floorID;
-    self.zoneName = self.$route.params.zoneName;
-    self.tenantName = self.$route.params.tenantName;
-    self.addDataVisitor();
-    setInterval(() => {
-      self.getCurrentDate();
-    }, 1000);
+    var logID = window.location.href;
+    this.LogCarparkID = logID;
+    let data = this.LogCarparkID.split("/");
+    self.invoiceNo = data[data.length - 1];
+    self.getParkingDetailReceipt(this.invoiceNo);
   },
 
   methods: {
-    addDataVisitor() {
+    getParkingDetailReceipt(logID) {
       let self = this;
-      // self.LoadingDialog = true;
-
-      let temp = {
-        documentNumber: "1444301170244",
-        prefixEN: "Mr.",
-        firstnameEN: "One",
-        middlenameEN: "",
-        lastnameEN: "Bangkok",
-        sexEN: "1",
-        prefixTH: "นาย",
-        firstnameTH: "วัน",
-        middlenameTH: "",
-        lastnameTH: "บางกอก",
-        sexTH: "1",
-        image1: "",
-        image2: "",
-        tenantID: 1,
-        towerID: 1,
-        zoneID: 1,
-        floorID: 1,
-        locationID: 1,
+      let tempdata = {
+        logid: logID,
       };
-
-      if (self.data != null) {
-        temp = self.data;
-      }
-
       axios
-        .post(`${self.url}VMS/addDataVisitor`, temp)
+        .post(`${self.url}Redemption/AlldataDetailsReceipt`, tempdata)
         .then(function(response) {
           if (response.data.status == 0) {
-            console.log(response.data.data);
-            let temp = localStorage.getItem("LogId");
-            if (temp != "") {
-              self.show = false;
-              self.message = "Successfully";
-              setTimeout(() => {
-                self.GotoMainPage();
-              }, 3000);
-            } else {
-              var s = new Date();
-              self.startDate = s;
-              let dateOut = response.data.data.split('"')[7].replace("Z", "");
-
-              self.endDate = dateOut;
-              self.Qrcode = response.data.data;
-              self.show = true;
-            }
+            self.defaultPage = false;
+            self.AlldataDetailsReceipt = response.data.data;
+            console.log(self.AlldataDetailsReceipt);
+            self.chooseData(self.AlldataDetailsReceipt[0].trn_Log_ID_Payment);
           }
           if (response.data.status == 1) {
-            self.show = false;
-            self.message = response.data.message;
-            setTimeout(() => {
-              self.GotoMainPage();
-            }, 3000);
+            self.overlay = false;
+            // self.defaultPage = true;
+            // self.$router.push("/ParkingPayment/" + 0);
           }
         })
-        .catch(function() {});
+        .catch(function(error) {
+          self.MessageAlert = error;
+          self.TypeAlert = "error";
+          self.AlertDialog = true;
+        });
     },
+
+    chooseData(index) {
+      let self = this;
+      self.Receiptmodel = index;
+      // let data = self.AlldataDetailsReceipt[index];
+      this.DetailsReceipt = self.AlldataDetailsReceipt.find(
+        (x) => x.trn_Log_ID_Payment == index
+      );
+    },
+
+    numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+
     print() {
       let self = this;
       html2canvas(document.querySelector("#capture")).then((canvas) => {

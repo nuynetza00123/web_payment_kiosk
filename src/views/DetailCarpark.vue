@@ -272,6 +272,7 @@ export default {
       RateData: null,
       Remark: "",
       imagesLogo: "",
+      invoiceNo: "",
       img1: "/src/assets/MotorcycleLogo_0.png",
       img2: "/src/assets/MotorcycleLogo_0.png",
       AlldataDetailsReceipt: [],
@@ -283,11 +284,11 @@ export default {
     var logID = window.location.href;
     this.LogCarparkID = logID;
     let data = this.LogCarparkID.split("/");
-    let invoiceNo = data[data.length - 1];
+    this.invoiceNo = data[data.length - 1];
     // setInterval(() => {
     //   this.getCurrentDate();
     // }, 1000);
-    self.getParkingDetail(invoiceNo);
+    self.getParkingDetail(this.invoiceNo);
   },
 
   methods: {
@@ -418,6 +419,11 @@ export default {
     GotoNationalIDCard() {
       let self = this;
       self.$router.push("/NationalIDCard");
+    },
+
+    Payment() {
+      let self = this;
+      self.$router.push("/Qrcode/"+ self.invoiceNo);
     },
 
     GotoPassport() {

@@ -24,7 +24,7 @@
                 <v-col cols="12" md="12" style="text-align: center;">
                   <img
                     height="auto"
-                    width="650px"
+                    width="450px"
                     style="padding-top: 0rem;
                       margin-left: auto;
                       margin-right: auto;"
@@ -34,135 +34,168 @@
               </v-row>
 
               <v-row style="margin-top: 5%">
-                <v-card-text>
-                  <div>
-                    <v-row cols="12" xs="12" sm="12" md="12" justify="center">
-                      <v-col cols="12" md="12" sm="12" align="center">
-                        <p
-                          v-show="CarLicense != ''"
-                          style="font-size: 48px  ;"
-                          class="mt-5"
-                        >
-                          {{ $t("message.LicensePlate") }}
-                        </p>
-                        <br />
-                        <p
-                          class="mt-2"
-                          v-show="CarLicense != ''"
-                          style="font-size: 60px;color: blueviolet;"
-                        >
-                          {{ CarLicense }}
+                <v-col cols="12" md="12" sm="12" align="center">
+                  <v-hover v-slot="{}">
+                    <v-card
+                      v-if="!setshow"
+                      class="mx-auto"
+                      height="1000"
+                      width="600"
+                      id="capture"
+                      style="background-color: white;"
+                    >
+                      <img
+                        class="ma-0 pa-0"
+                        src="@/assets/promptpay.jpg"
+                        height="auto"
+                        style="padding-top: 30px;width: 100%;"
+                      />
+
+                      <v-img height="400" width="400" :src="qrImage"></v-img>
+
+                      <v-row cols="12" xs="12" sm="12" md="12" justify="center">
+                        <v-col cols="12" md="12" sm="12" align="center">
+                          <p style="font-size: 50px  ;">
+                            {{
+                              amount.toLocaleString() + " " + $t("message.Baht")
+                            }}
+                          </p>
+                        </v-col>
+                      </v-row>
+
+                      <v-row cols="12" xs="12" sm="12" md="12" justify="center">
+                        <v-col cols="12" md="12" sm="12" align="center">
+                          <p style="font-size: 30px  ;">
+                            {{ $t("message.PaymentWithin") }}
+                            {{ "0:" + minutes + ":" + seconds }}
+                          </p>
+                        </v-col>
+                      </v-row>
+
+                      <v-row cols="12" xs="12" sm="12" md="12" justify="center">
+                        <v-col cols="4" md="4" sm="4" align="center">
+                          <p style="font-size: 30px  ;">
+                            {{ "Ref1" }}
+                          </p>
+                        </v-col>
+                        <v-col cols="8" md="8" sm="8" align="center">
+                          <p style="font-size: 30px;">
+                            {{ ref1 }}
+                          </p>
+                        </v-col>
+                      </v-row>
+                      <v-row cols="12" xs="12" sm="12" md="12" justify="center">
+                        <v-col cols="4" md="4" sm="4" align="center">
+                          <p style="font-size: 30px  ;">
+                            {{ "Ref2" }}
+                          </p>
+                        </v-col>
+                        <v-col cols="8" md="8" sm="8" align="center">
+                          <p style="font-size: 30px;">
+                            {{ ref2 }}
+                          </p>
+                        </v-col>
+                      </v-row>
+                    </v-card>
+                  </v-hover>
+
+                  <v-row
+                    v-if="setshow"
+                    cols="12"
+                    xs="12"
+                    sm="12"
+                    md="12"
+                    justify="center"
+                  >
+                    <v-col cols="12" md="12" sm="12" align="center">
+                      <v-col
+                        v-if="setpaymentSuccess"
+                        cols="12"
+                        md="8"
+                        sm="12"
+                        style="color: red;"
+                        align="center"
+                      >
+                        <p style="font-size: 60px" class="mt-4">
+                          {{ $t("message.PaymentCompleted") }}
                         </p>
                       </v-col>
-                    </v-row>
-
-                    <v-row cols="12" xs="12" sm="12" md="12" justify="center">
-                    </v-row>
-                    <v-row
-                      cols="12"
-                      xs="12"
-                      sm="12"
-                      md="12"
-                      justify="center"
-                      style="height: auto;"
-                    >
                       <v-col
+                        v-if="!setpaymentSuccess"
+                        cols="12"
+                        md="8"
+                        sm="12"
+                        style="color: red;"
+                        align="center"
+                      >
+                        <p style="font-size: 60px" class="mt-4">
+                          {{ $t("message.PaymentIncomplete") }}
+                        </p>
+                      </v-col>
+
+                      <img
+                        v-if="setpaymentSuccess"
+                        class="ma-0 pa-0"
+                        src="@/assets/successful-logo-01.png"
+                        width="400"
+                        height="auto"
+                        style="padding-top: 10px;"
+                      />
+                      <img
+                        v-if="!setpaymentSuccess"
+                        class="ma-0 pa-0"
+                        src="@/assets/unsuccessful-logo-01.png"
+                        width="400"
+                        height="auto"
+                        style="padding-top: 10px;"
+                      />
+
+                      <v-col
+                        v-if="setshow"
                         cols="12"
                         md="12"
+                        sm="12"
+                        style="color: red;"
                         align="center"
-                        class=" rounded-sm"
                       >
-                        <v-divider></v-divider>
-                        <table
-                          style="width: 100%; border-spacing: 12px;font-size: 40px;height: 600px;"
-                        >
-                          <tr>
-                            <td
-                              class="ParkingInfo-class"
-                              style="min-width: 150px"
-                            >
-                              {{ $t("message.TicketNo") }}
-                            </td>
-                            <td class="ParkingInfo-class-right">
-                              {{ TicketNo }}
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="ParkingInfo-class">
-                              {{ $t("message.DateTime") }}
-                            </td>
-                            <td class="ParkingInfo-class-right">
-                              {{ DateTime }}
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="ParkingInfo-class">
-                              {{ $t("message.DateTimeIn") }}
-                            </td>
-                            <td class="ParkingInfo-class-right">
-                              {{ TimeIn }}
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="ParkingInfo-class">
-                              {{ $t("message.Duration") }}
-                            </td>
-                            <td class="ParkingInfo-class-right">
-                              {{ numberWithCommas(Duration) }}
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="ParkingInfo-class">
-                              {{ $t("message.VehicleName") }}
-                            </td>
-                            <td class="ParkingInfo-class-right">
-                              {{ VehicleName }}
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="ParkingInfo-class">
-                              {{ $t("message.RateDetail") }}
-                            </td>
-                          </tr>
-                          <tr>
-                            <td
-                              colspan="2"
-                              class="ParkingInfo-class"
-                              style="color: #ff6600; line-height: 1em;
-    height: 1.5em;"
-                            >
-                              {{
-                                $i18n.locale == "en"
-                                  ? RateDetailEN
-                                  : RateDetailTH
-                              }}
-                            </td>
-                          </tr>
-
-                          <tr>
-                            <td class="ParkingInfo-class">
-                              {{ $t("message.Total") }}
-                            </td>
-                            <td
-                              style="text-align: right; color: green; font-size: 50px;"
-                            >
-                              {{ numberWithCommas(Total) }}
-                              <span style="color: black">
-                                {{ $t("message.Baht") }}</span
-                              >
-                            </td>
-                          </tr>
-                        </table>
+                        <p style="font-size: 50px" class="mt-4">
+                          {{ "Logid : " + invoiceNo }}
+                        </p>
                       </v-col>
-                    </v-row>
-
-                    <v-row>
-                      <v-col cols="12" xs="12" sm="12" md="12"></v-col>
-                    </v-row>
-                  </div>
-                </v-card-text>
+                    </v-col>
+                  </v-row>
+                </v-col>
               </v-row>
-              <v-row style="margin-top: 25%">
+              <v-row v-if="!setshow" style="margin-top: 10%">
+                <v-col cols="12" md="12" style="text-align: center">
+                  <v-btn
+                    color="primary"
+                    class="white--text  ma-3 mt-2 text-capitalize"
+                    router
+                    width="400"
+                    style="font-size: 45px; border-radius: 50px"
+                    height="100"
+                    @click="BackToPDPAPage()"
+                  >
+                    {{ $t("message.Back") }}</v-btn
+                  >
+                </v-col>
+                <!-- <v-col cols="6" md="6" style="text-align: center">
+                  <v-btn
+                    v-if="Total == 0"
+                    color="primary"
+                    class="white--text mt-2 text-capitalize"
+                    router
+                    width="400"
+                    style="font-size: 45px; border-radius: 50px"
+                    height="100"
+                    @click="PaymentWithArgentoTech()"
+                  >
+                    {{ $t("message.Clicktopay") }}
+                  </v-btn>
+                </v-col> -->
+              </v-row>
+              <v-row v-if="setshow" style="margin-top: 40%">
                 <v-col cols="12" md="12" style="text-align: center">
                   <v-btn
                     color="primary"
@@ -177,16 +210,16 @@
                   >
 
                   <v-btn
-                    v-if="Total != 0"
+                    v-if="setpaymentSuccess"
                     color="primary"
                     class="white--text ma-3 mt-2 text-capitalize"
                     router
                     width="400"
                     style="font-size: 45px; border-radius: 50px"
                     height="100"
-                    @click="PaymentWithArgentoTech()"
+                    @click="Receipt()"
                   >
-                    {{ $t("message.Clicktopay") }}
+                    {{ $t("message.Receipt") }}
                   </v-btn>
                 </v-col>
                 <!-- <v-col cols="6" md="6" style="text-align: center">
@@ -232,7 +265,7 @@
 import axios from "axios";
 import enurl from "@/api/environment";
 import ChangeLanguage from "@/components/ChangeLanguage";
-import Swal from "sweetalert2/dist/sweetalert2.js";
+// import Swal from "sweetalert2/dist/sweetalert2.js";
 export default {
   name: "Qrcode",
   components: {
@@ -245,6 +278,9 @@ export default {
       DefaultLogo: "@/assets/logo192.png",
       DefaultBG: "@/assets/1D2939.png",
       Datetime: "",
+      qrImage: "",
+      amount: 0,
+      countDown: 180,
       LoadingDialog: false,
 
       TerminalID: null,
@@ -254,6 +290,8 @@ export default {
       UserID: null,
 
       overlay: false,
+      setpaymentSuccess: false,
+      setshow: false,
 
       invoiceNoCarparkid: 0,
 
@@ -272,6 +310,13 @@ export default {
       RateData: null,
       Remark: "",
       imagesLogo: "",
+      dataQrcode: [],
+      InquiryPayment: [],
+      ref1: "",
+      ref2: "",
+      invoiceNo: "",
+      minutes: null,
+      seconds: null,
       img1: "/src/assets/MotorcycleLogo_0.png",
       img2: "/src/assets/MotorcycleLogo_0.png",
       AlldataDetailsReceipt: [],
@@ -283,59 +328,60 @@ export default {
     var logID = window.location.href;
     this.LogCarparkID = logID;
     let data = this.LogCarparkID.split("/");
-    let invoiceNo = data[data.length - 1];
+    self.invoiceNo = data[data.length - 1];
     // setInterval(() => {
     //   this.getCurrentDate();
     // }, 1000);
-    self.getParkingDetail(invoiceNo);
+    self.countDownTimer();
+    self.GetQrcode(self.invoiceNo);
   },
 
   methods: {
+    countDownTimer() {
+      let that = this;
+      if (that.countDown > 0) {
+        setTimeout(() => {
+          that.countDown -= 1;
+          that.minutes = String(Math.floor(this.countDown / 60)).padStart(
+            2,
+            "0"
+          );
+          that.seconds = String(this.countDown % 60).padStart(2, "0");
+          that.countDownTimer();
+        }, 1000);
+      } else if (that.countDown == 0) {
+        that.setshow = true;
+      }
+    },
     numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
-    async getParkingDetail(logID) {
+    async GetQrcode(logID) {
       let self = this;
       if (logID == 0) {
         return;
       } else {
         let tempdata = {
-          search: logID,
-          lostCard: false,
+          invoiceNo: logID,
         };
         await axios
-          .post(`${self.url}Redemption/GetParkingDetail`, tempdata)
+          .post(`${self.url}Payment/GetQrcode`, tempdata, {
+            headers: {
+              "API-Key": "6b3a44e1-043c-4b3b-9317-7bcefa2c92c6",
+            },
+          })
           .then(function(response) {
-            if (response.data.status == 0) {
-              self.Total = response.data.data[0].Total;
-              self.BindingDataResponse(response.data.data[0]);
+            if (response.data.status == "200") {
+              // console.log(response.data.data);
+              self.dataQrcode = response.data.data;
+              self.qrImage = self.dataQrcode.imageAsBase64;
+              self.amount = self.dataQrcode.amount;
+              self.ref1 = self.dataQrcode.ref1;
+              self.ref2 = self.dataQrcode.ref2;
+              self.Inquiry(self.invoiceNo);
             }
-            if (response.data.status == 1) {
-              if (response.data.message == "QR Exit !") {
-                Swal.fire({
-                  icon: "warning",
-                  title: response.data.message,
-                  showCancelButton: true,
-                  confirmButtonText: "Show Receipt",
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    self.$router.push("/Receipt/" + self.defaultPageLink);
-                  } else {
-                    self.$router.push("/ParkingPayment/" + 0);
-                  }
-                });
-              } else {
-                Swal.fire({
-                  icon: "warning",
-                  title: response.data.message,
-                  showConfirmButton: false,
-                  timer: 1500,
-                });
-
-                self.$router.push("/ParkingPayment/" + 0);
-              }
-
-              self.overlay = false;
+            if (response.data.status == "1") {
+              self.$router.push("/MainMenu");
             }
           })
           .catch(function(error) {
@@ -346,43 +392,39 @@ export default {
       }
     },
 
-    BindingDataResponse(data) {
+    async Inquiry(logID) {
       let self = this;
-      self.invoiceNoCarparkid = data.logId;
-      if (data != null) {
-        if (data.status != "Fail") {
-          self.TerminalID = data.terminalInId;
-          self.DatetimeIn = data.entryDateTime;
-          self.MemberType = data.memberTypeId;
-          self.CarType = data.vehicleTypeId;
-          self.TicketNo = data.ticketNo;
-          self.DateTime = new Date(data.entryDateTime).toLocaleDateString(
-            "en-us",
-            {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
+      if (logID == 0) {
+        return;
+      } else {
+        let tempdata = {
+          invoiceNo: logID,
+        };
+        await axios
+          .post(`${self.url}Payment/InquiryPayment`, tempdata, {
+            headers: {
+              "API-Key": "6b3a44e1-043c-4b3b-9317-7bcefa2c92c6",
+            },
+          })
+          .then(function(response) {
+            if (response.data.status == "200") {
+              // console.log(response.data.data);
+              self.InquiryPayment = response.data.data;
+              self.setpaymentSuccess = true;
+              self.setshow = true;
             }
-          );
-          self.TimeIn =
-            data.entryDateTime.split(" ").length > 0
-              ? data.entryDateTime.split(" ")[1]
-              : "";
-          self.Duration = data.parkHH + " hrs " + data.parkMM + " mins";
-          self.CarLicense = data.plateNo;
-          self.VehicleName = data.vehicleTypeName;
-          self.RateCodeString = data.rateCode;
-          self.RateDetailTH = data.rateDetailTH;
-          self.RateDetailEN = data.rateDetailEN;
-          self.Total = data.total;
-        } else {
-          self.MessageAlert = data.message;
-          self.TypeAlert = "error";
-          self.AlertDialog = true;
-        }
+            if (response.data.status == "1") {
+              self.setpaymentSuccess = false;
+              self.setshow = true;
+              // self.$router.push("/MainMenu");
+            }
+          })
+          .catch(function(error) {
+            self.MessageAlert = error;
+            self.TypeAlert = "error";
+            self.AlertDialog = true;
+          });
       }
-      self.overlay = false;
-      //
     },
 
     getCurrentDate() {
@@ -423,6 +465,11 @@ export default {
     GotoPassport() {
       let self = this;
       self.$router.push("/NationalPassport");
+    },
+
+    Receipt() {
+      let self = this;
+      self.$router.push("/PrintQr/"+ self.invoiceNo );
     },
   },
 };

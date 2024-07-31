@@ -140,7 +140,7 @@ export default {
     // setInterval(() => {
     //   this.getCurrentDate();
     // }, 1000);
-    this.SearchQrcode("2024030311355202");
+    this.SearchQrcode("https://punn-parking.fs-omc.io/ParkingFee/2024030311355202");
   },
 
   methods: {
@@ -181,9 +181,15 @@ export default {
 
     SearchQrcode(data) {
       let self = this;
-      localStorage.setItem("LogId", data);
+
+      let datalink = data.split("/");
+      self.invoiceNo = datalink[datalink.length - 1];
+
+
+
+      localStorage.setItem("LogId", self.invoiceNo);
       let temp = {
-        search: data,
+        search: self.invoiceNo,
         lostCard: false,
       };
       axios
@@ -192,7 +198,7 @@ export default {
           if (response.data.status == 0) {
             // console.log(response.data.data);
 
-            self.$router.push("/DetailCarpark/"+ data);
+            self.$router.push("/DetailCarpark/"+ self.invoiceNo);
           }
           if (response.data.status == 1) {
             console.log(response.data.data);
