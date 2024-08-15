@@ -110,7 +110,7 @@
                               align="right"
                               style="padding-top: 0px;padding-bottom: 0px;"
                             >
-                              {{ DetailsReceipt.trn_Ent_Terminal_ID }}
+                              {{ DetailsReceipt.trn_Terminal_ID }}
                             </v-col>
                             <v-col
                               cols="6"
@@ -128,13 +128,13 @@
                               align="right"
                               style="padding-top: 0px;padding-bottom: 0px;"
                             >
-                              {{ "0105562045761" }}
+                              {{ DetailsReceipt.trn_SaleTaxNo }}
                             </v-col>
 
                             <v-col
                               cols="6"
-                              md="6"
-                              sm="6"
+                              md="5"
+                              sm="5"
                               align="left"
                               style="padding-top: 0px;padding-bottom: 0px;"
                             >
@@ -142,12 +142,30 @@
                             </v-col>
                             <v-col
                               cols="6"
-                              md="4"
-                              sm="4"
+                              md="5"
+                              sm="5"
                               align="right"
                               style="padding-top: 0px;padding-bottom: 0px;"
                             >
                               {{ DetailsReceipt.trn_Tax_No }}
+                            </v-col>
+                            <v-col
+                              cols="6"
+                              md="5"
+                              sm="5"
+                              align="left"
+                              style="padding-top: 0px;padding-bottom: 0px;"
+                            >
+                              POS NO
+                            </v-col>
+                            <v-col
+                              cols="6"
+                              md="5"
+                              sm="5"
+                              align="right"
+                              style="padding-top: 0px;padding-bottom: 0px;"
+                            >
+                              {{ DetailsReceipt.trn_Remark }}
                             </v-col>
                             <v-col
                               cols="6"
