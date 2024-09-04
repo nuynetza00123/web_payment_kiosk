@@ -363,6 +363,7 @@ export default {
       } else {
         let tempdata = {
           invoiceNo: logID,
+          term_ID: "401",
         };
         await axios
           .post(`${self.url}Payment/GetQrcode`, tempdata, {
@@ -469,7 +470,7 @@ export default {
 
     Receipt() {
       let self = this;
-      self.$router.push("/PrintQr/"+ self.invoiceNo );
+      self.$router.push("/PrintQr/" + self.invoiceNo);
     },
   },
 };
