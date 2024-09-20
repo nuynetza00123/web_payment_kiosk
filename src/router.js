@@ -3,6 +3,7 @@ import Router from "vue-router";
 import MainMenu from "./views/MainMenu";
 import CapturePerson from "./views/CapturePerson";
 import FindingTenant from "./views/FindingTenant";
+import PlateNo from "./views/PlateNo";
 import IdentifySelection from "./views/IdentifySelection";
 import NationalIDCard from "./views/NationalIDCard";
 import PrintQr from "./views/PrintQr";
@@ -38,6 +39,11 @@ const router = new Router({
       path: "/FindingTenant",
       name: "FindingTenant",
       component: FindingTenant
+    },
+    {
+      path: "/PlateNo/:id",
+      name: "PlateNo",
+      component: PlateNo
     },
     {
       path: "/IdentifySelection",

@@ -88,6 +88,7 @@ const messages = {
       Share: "Share",
       ParkingPayment: "Parking Payment",
       Receipt: "Receipt",
+      Plate: "Please fill in your Plate",
     },
   },
   th: {
@@ -177,6 +178,7 @@ const messages = {
       Share: "แชร์",
       ParkingPayment: "ชำระค่าบริการจอดรถ",
       Receipt: "ใบเสร็จ",
+      Plate: "กรุณากรอกทะเบียนรถ",
 
     },
   },

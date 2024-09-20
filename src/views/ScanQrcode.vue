@@ -140,7 +140,7 @@ export default {
     // setInterval(() => {
     //   this.getCurrentDate();
     // }, 1000);
-    // this.SearchQrcode("https://punn-parking.fs-omc.io/ParkingFee/2024030311355202");
+    // this.SearchQrcode("https://punn-parking.fs-omc.io/ParkingFee/2024030311241601");
   },
 
   methods: {
@@ -198,10 +198,16 @@ export default {
           if (response.data.status == 0) {
             // console.log(response.data.data);
 
-            self.$router.push("/DetailCarpark/"+ self.invoiceNo);
+            if(response.data.data[0].plateNo.includes("unknown") || response.data.data[0].plateNo.includes("0000") ){
+              self.$router.push("/PlateNo/"+ self.invoiceNo);
+            }else{
+              self.$router.push("/DetailCarpark/"+ self.invoiceNo);
+            }
+
+           
           }
           if (response.data.status == 1) {
-            console.log(response.data.data);
+            // console.log(response.data.data);
             self.$router.push("/MainMenu");
           }
         })

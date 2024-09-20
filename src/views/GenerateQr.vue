@@ -190,7 +190,7 @@
           .getElementById("photoTaken")
           .toDataURL("image/jpeg")
           .replace("image/jpeg", "image/octet-stream");
-          console.log(canvas);
+          // console.log(canvas);
       },
   
       GotoFindingTenant() {
