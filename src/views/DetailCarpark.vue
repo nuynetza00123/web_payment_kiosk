@@ -162,7 +162,26 @@
                   </div>
                 </v-card-text>
               </v-row>
-              <v-row style="margin-top: 25%">
+
+              <v-row style="margin-top: 5%">
+                <v-col cols="12" md="12" style="text-align: center">
+            
+                  <v-btn
+                    v-show="checkreceipt"
+                    color="primary"
+                    class="white--text ma-3 mt-2 text-capitalize"
+                    router
+                    width="400"
+                    style="font-size: 45px; border-radius: 50px"
+                    height="100"
+                    @click="RePrint()"
+                  >
+                    {{ 'Re Print' }}
+                  </v-btn>
+                </v-col>
+              </v-row>
+
+              <v-row style="margin-top: 5%">
                 <v-col cols="12" md="12" style="text-align: center">
                   <v-btn
                     color="primary"
@@ -175,7 +194,6 @@
                   >
                     {{ $t("message.Back") }}</v-btn
                   >
-
                   <v-btn
                     v-if="Total != 0"
                     color="primary"
@@ -189,20 +207,6 @@
                     {{ $t("message.Clicktopay") }}
                   </v-btn>
                 </v-col>
-                <!-- <v-col cols="6" md="6" style="text-align: center">
-                  <v-btn
-                    v-if="Total == 0"
-                    color="primary"
-                    class="white--text mt-2 text-capitalize"
-                    router
-                    width="400"
-                    style="font-size: 45px; border-radius: 50px"
-                    height="100"
-                    @click="PaymentWithArgentoTech()"
-                  >
-                    {{ $t("message.Clicktopay") }}
-                  </v-btn>
-                </v-col> -->
               </v-row>
             </v-card>
           </v-row>
@@ -383,7 +387,38 @@ export default {
         }
       }
       self.overlay = false;
+      self.getParkingDetailReceipt(data.logId);
       //
+    },
+
+
+    getParkingDetailReceipt(logID) {
+      let self = this;
+      let tempdata = {
+        logid: logID,
+      };
+      axios
+        .post(`${self.url}Redemption/AlldataDetailsReceipt`, tempdata)
+        .then(function(response) {
+          if (response.data.status == 0) {
+            self.defaultPage = false;
+            self.AlldataDetailsReceipt = response.data.data;
+            console.log(self.AlldataDetailsReceipt[0].trn_Total);
+            if(self.AlldataDetailsReceipt[0].trn_Total != 0){
+              self.checkreceipt = true;
+            }
+          }
+          if (response.data.status == 1) {
+            self.overlay = false;
+            // self.defaultPage = true;
+            // self.$router.push("/ParkingPayment/" + 0);
+          }
+        })
+        .catch(function(error) {
+          self.MessageAlert = error;
+          self.TypeAlert = "error";
+          self.AlertDialog = true;
+        });
     },
 
     getCurrentDate() {
@@ -424,6 +459,11 @@ export default {
     Payment() {
       let self = this;
       self.$router.push("/Qrcode/"+ self.invoiceNo);
+    },
+
+    RePrint() {
+      let self = this;
+      self.$router.push("/PrintQr/"+ self.invoiceNo);
     },
 
     GotoPassport() {

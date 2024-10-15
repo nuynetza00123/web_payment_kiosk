@@ -19,6 +19,14 @@
               class="align-center pa-4 mx-auto"
             >
               <ChangeLanguage />
+              <v-row
+                style="    display: flex;
+    justify-content: flex-end;padding-right: 40px;padding-top: 10%"
+              >
+                <v-progress-circular indeterminate size="100 ">
+                  <span style="font-size: 40px;">{{ timerCount }}</span>
+                </v-progress-circular>
+              </v-row>
               <v-row style="margin-top: 5%">
                 <v-col
                   cols="12"
@@ -452,7 +460,7 @@
                 <v-col
                   cols="12"
                   md="12"
-                  style="text-align: center;margin-top: 30%;"
+                  style="text-align: center;margin-top: 10%;"
                 >
                   <v-btn
                     color="primary"
@@ -522,7 +530,7 @@ export default {
       show: false,
       message: "",
       dialog: false,
-
+      timerCount: 3,
       receipt: false,
 
       vehicleShow: true,
@@ -579,6 +587,27 @@ export default {
       DetailsReceipt: [],
     };
   },
+
+  watch: {
+    timerCount: {
+      handler(value) {
+        if (value > 0) {
+          setTimeout(() => {
+            this.timerCount--;
+            // if (this.timerCount % 2) {
+            //   this.$refs.inputQr.focus();
+            // }
+            if (this.timerCount == 1) {
+              this.print();
+            }
+          }, 1000);
+        }
+      },
+      immediate: true, // This ensures the watcher is triggered upon creation
+    },
+  },
+
+
   mounted: function() {
     let self = this;
     var logID = window.location.href;
@@ -600,7 +629,7 @@ export default {
           if (response.data.status == 0) {
             self.defaultPage = false;
             self.AlldataDetailsReceipt = response.data.data;
-            console.log(self.AlldataDetailsReceipt);
+            // console.log(self.AlldataDetailsReceipt);
             self.chooseData(self.AlldataDetailsReceipt[0].trn_Log_ID_Payment);
           }
           if (response.data.status == 1) {
