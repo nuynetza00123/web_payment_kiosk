@@ -99,7 +99,7 @@ import axios from "axios";
 import enurl from "@/api/environment";
 import ChangeLanguage from "@/components/ChangeLanguage";
 export default {
-  name: "ScanQrcode",
+  name: "RePrintQrcode",
   components: {
     ChangeLanguage,
   },
@@ -140,7 +140,7 @@ export default {
     // setInterval(() => {
     //   this.getCurrentDate();
     // }, 1000);
-    // this.SearchQrcode("https://punn-parking.fs-omc.io/ParkingFee/202410211054170005");
+    // this.SearchQrcode("https://punn-parking.fs-omc.io/ParkingFee/2024102108361801");
   },
 
   methods: {
@@ -189,21 +189,18 @@ export default {
 
       localStorage.setItem("LogId", self.invoiceNo);
       let temp = {
-        search: self.invoiceNo,
-        lostCard: false,
+        logid: self.invoiceNo,
       };
       axios
-        .post(`${self.url}Redemption/GetParkingDetail`, temp)
+        .post(`${self.url}Redemption/AlldataDetailsReceipt`, temp)
         .then(function(response) {
           if (response.data.status == 0) {
-            // console.log(response.data.data);
-
-            if(response.data.data[0].plateNo.includes("unknown") || response.data.data[0].plateNo.includes("0000") ){
-              self.$router.push("/PlateNo/"+ self.invoiceNo);
-            }else{
-              self.$router.push("/DetailCarpark/"+ self.invoiceNo);
-            }
-
+           if(response.data.data[0].trn_Total != 0) {
+            self.$router.push("/PrintQr/"+ response.data.data[0].trn_Log_ID);
+           }else{
+            self.$router.push("/MainMenu");
+           }
+           
            
           }
           if (response.data.status == 1) {
@@ -213,6 +210,33 @@ export default {
         })
         .catch(function() {
           self.$router.push("/MainMenu");
+        });
+    },
+
+    getParkingDetailReceipt(logID) {
+      let self = this;
+      let tempdata = {
+        logid: logID,
+      };
+      axios
+        .post(`${self.url}Redemption/AlldataDetailsReceipt`, tempdata)
+        .then(function(response) {
+          if (response.data.status == 0) {
+            self.defaultPage = false;
+            self.AlldataDetailsReceipt = response.data.data;
+            // console.log(self.AlldataDetailsReceipt);
+            self.chooseData(self.AlldataDetailsReceipt[0].trn_Log_ID_Payment);
+          }
+          if (response.data.status == 1) {
+            self.overlay = false;
+            // self.defaultPage = true;
+            // self.$router.push("/ParkingPayment/" + 0);
+          }
+        })
+        .catch(function(error) {
+          self.MessageAlert = error;
+          self.TypeAlert = "error";
+          self.AlertDialog = true;
         });
     },
   },

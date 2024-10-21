@@ -163,7 +163,7 @@
                 </v-card-text>
               </v-row>
 
-              <v-row style="margin-top: 5%">
+              <!-- <v-row style="margin-top: 5%">
                 <v-col cols="12" md="12" style="text-align: center">
             
                   <v-btn
@@ -179,9 +179,9 @@
                     {{ 'Re Print' }}
                   </v-btn>
                 </v-col>
-              </v-row>
+              </v-row> -->
 
-              <v-row style="margin-top: 5%">
+              <v-row style="margin-top: 15%">
                 <v-col cols="12" md="12" style="text-align: center">
                   <v-btn
                     color="primary"
@@ -461,10 +461,10 @@ export default {
       self.$router.push("/Qrcode/"+ self.invoiceNo);
     },
 
-    RePrint() {
-      let self = this;
-      self.$router.push("/PrintQr/"+ self.invoiceNo);
-    },
+    // RePrint() {
+    //   let self = this;
+    //   self.$router.push("/PrintQr/"+ self.invoiceNo);
+    // },
 
     GotoPassport() {
       let self = this;

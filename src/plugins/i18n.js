@@ -89,6 +89,7 @@ const messages = {
       ParkingPayment: "Parking Payment",
       Receipt: "Receipt",
       Plate: "Please fill in your Plate",
+      Reprint: "Reprint",
     },
   },
   th: {
@@ -179,7 +180,7 @@ const messages = {
       ParkingPayment: "ชำระค่าบริการจอดรถ",
       Receipt: "ใบเสร็จ",
       Plate: "กรุณากรอกทะเบียนรถ",
-
+      Reprint: "พิมพ์ใบเสร็จอีกครั้ง",
     },
   },
 };

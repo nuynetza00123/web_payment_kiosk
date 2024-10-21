@@ -9,6 +9,7 @@ import NationalIDCard from "./views/NationalIDCard";
 import PrintQr from "./views/PrintQr";
 import PDPAPage from "./views/PDPAPage";
 import ScanQrcode from "./views/ScanQrcode";
+import RePrintQrcode from "./views/RePrintQrcode";
 import NationalPassport from "./views/NationalPassport";
 import DetailCarpark from "./views/DetailCarpark";
 import Qrcode from "./views/Qrcode";
@@ -69,6 +70,11 @@ const router = new Router({
       path: "/ScanQrcode",
       name: "ScanQrcode",
       component: ScanQrcode
+    },
+    {
+      path: "/RePrintQrcode",
+      name: "RePrintQrcode",
+      component: RePrintQrcode
     },
     {
       path: "/DetailCarpark/:id",

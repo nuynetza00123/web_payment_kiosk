@@ -19,7 +19,7 @@
 
             <ChangeLanguage />
 
-              <v-row style="margin-top: 10%;">
+              <v-row style="margin-top: 5%;">
                 <v-col cols="12" md="12" style="text-align: center;">
                   <img
                     height="auto"
@@ -31,7 +31,7 @@
                   />
                 </v-col>
               </v-row>
-              <v-row style="margin-top: 10%;">
+              <v-row style="margin-top: 5%;">
                 <v-col cols="12" md="12" style="text-align: center;">
                   <p style="color: #126496;font-size: 60px;font-weight: bold;">
                     <!-- ลงทะเบียนเข้าอาคาร -->
@@ -65,6 +65,20 @@
                     style="font-size: 45px;border-radius: 50px"
                     height="120"
                     >{{ $t("message.Start") }}</v-btn
+                  >
+                </v-col>
+              </v-row>
+              <v-row style="margin-top: 5%;">
+                <v-col cols="12" md="12" style="text-align: center;">
+                  <v-btn
+                    color="primary"
+                    class="white--text mt-2 text-capitalize"
+                    router
+                    width="620"
+                    @click="GotoScanReprint()"
+                    style="font-size: 45px;border-radius: 50px"
+                    height="120"
+                    >{{ $t("message.Reprint") }}</v-btn
                   >
                 </v-col>
               </v-row>
@@ -126,7 +140,16 @@ export default {
     };
   },
   mounted: function() {
-    localStorage.setItem("LogId", '');
+    if(localStorage.getItem("LogId")== null){
+      localStorage.setItem("LogId", '');
+    }else if(localStorage.getItem("LogId")!= ''){
+      localStorage.setItem("LogId", '');
+      location.reload();
+    }else{
+      localStorage.setItem("LogId", '');
+    }
+
+    
     // setInterval(() => {
     //   this.getCurrentDate();
     // }, 1000);
@@ -182,6 +205,10 @@ export default {
     GotoScan() {
       let self = this;
       self.$router.push("/ScanQrcode");
+    },
+    GotoScanReprint() {
+      let self = this;
+      self.$router.push("/RePrintQrcode");
     },
   },
 };
