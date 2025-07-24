@@ -12,6 +12,7 @@ import ScanQrcode from "./views/ScanQrcode";
 import RePrintQrcode from "./views/RePrintQrcode";
 import NationalPassport from "./views/NationalPassport";
 import DetailCarpark from "./views/DetailCarpark";
+import ParkingPayment from "./views/ParkingPayment";
 import Qrcode from "./views/Qrcode";
 
 // import store from "./store"
@@ -80,6 +81,11 @@ const router = new Router({
       path: "/DetailCarpark/:id",
       name: "DetailCarpark",
       component: DetailCarpark
+    },
+    {
+      path: "/ParkingPayment/:id",
+      name: "ParkingPayment",
+      component: ParkingPayment
     },
     {
       path: "/Qrcode/:id",

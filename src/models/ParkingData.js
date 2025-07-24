@@ -1,0 +1,45 @@
+export default class ParkingData {
+  constructor(data = {}) {
+    this.status = data.status || "";
+    this.message = data.message || "";
+    this.exeption = data.exeption || null;
+    this.logId = data.logId || "";
+    this.ticketNo = data.ticketNo || "";
+    this.ticketUid = data.ticketUid || "";
+    this.plateNo = data.plateNo || "";
+    this.exitStatus = data.exitStatus || 0;
+    this.terminalInId = data.terminalInId || 0;
+    this.terminalInName = data.terminalInName || "";
+    this.memberTypeId = data.memberTypeId || 0;
+    this.memberTypeName = data.memberTypeName || "";
+    this.vehicleTypeId = data.vehicleTypeId || 0;
+    this.vehicleTypeName = data.vehicleTypeName || "";
+    this.entryDateTime = data.entryDateTime || "";
+    this.logDateTime = data.logDateTime || "";
+    this.isCardLost = data.isCardLost || false;
+    this.parkHH = data.parkHH || 0;
+    this.parkMM = data.parkMM || 0;
+    this.rateHH = data.rateHH || 0;
+    this.freeHH = data.freeHH || 0;
+    this.rateCode = data.rateCode || "";
+    this.rateDetailTH = data.rateDetailTH || "";
+    this.rateDetailEN = data.rateDetailEN || "";
+    this.tenantId = data.tenantId || "";
+    this.tenantName = data.tenantName || "";
+    this.subTotal = data.subTotal || 0;
+    this.discount = data.discount || 0;
+    this.parkFee = data.parkFee || 0;
+    this.cardLostFine = data.cardLostFine || 0;
+    this.overNightFine = data.overNightFine || 0;
+    this.total = data.total || 0;
+    this.isInv = data.isInv || false;
+    this.invRateHH = data.invRateHH || 0;
+    this.invFee = data.invFee || 0;
+    this.isPayAtKiosk = data.isPayAtKiosk || false;
+    this.lastDateTimePaymentAtKiosk = data.lastDateTimePaymentAtKiosk || "";
+    this.payAtKioskAll = data.payAtKioskAll || 0;
+    this.timeUsedInMinute = data.timeUsedInMinute || 0;
+    this.durationInMinute = data.durationInMinute || 0;
+    this.remainInMinute = data.remainInMinute || 0;
+  }
+}

@@ -1,20 +1,21 @@
 <template>
   <v-app>
     <!-- <NavBar/> -->
-    <v-content>
+    <NavBar v-if="$route.path != '/MainMenu'" />
+    <v-main>
       <div>
         <router-view></router-view>
       </div>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
 <script>
-// import NavBar from "./components/NavBar";
+import NavBar from "./components/NavBar";
 export default {
   name: "App",
   components: {
-    // NavBar,
+    NavBar,
   },
 };
 </script>
@@ -26,15 +27,26 @@ export default {
 }
 
 .v-content__wrap {
-  background-color: white;
+  background-color: #FCFBF5;
+  width: 100%;
+  height: 100%;
+}
+
+.v-main__wrap {
+  background-color: #FCFBF5;
   width: 100%;
   height: 100%;
 }
 
 @media only screen and (max-width: 959px) {
   .v-content__wrap {
-    background-color: white;
-    width: 80%;
+    background-color: #FCFBF5;
+    width: 100%;
+  }
+
+  .v-main__wrap {
+    background-color: #FCFBF5;
+    width: 100%;
   }
 }
 
@@ -43,12 +55,15 @@ export default {
   color: #444444;
   scrollbar-width: none;
 }
+
 @-moz-document url-prefix() {
+
   /* Disable scrollbar Firefox */
   html {
     scrollbar-width: none;
   }
 }
+
 ::-webkit-scrollbar {
   display: none;
 }

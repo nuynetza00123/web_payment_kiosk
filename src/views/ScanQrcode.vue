@@ -1,62 +1,35 @@
 <template>
   <div>
-    <v-img
-      width="100%"
-      height="auto"
-      class="fullscreen"
-      style="padding-top: 3%;"
-    >
+    <v-img width="100%" height="auto" class="fullscreen" style="padding-top: 3%;">
       <div>
         <v-container>
           <v-row>
-            <v-card
-              elevation="0"
-              width="900"
-              height="1800"
-              style="background-color: white;"
-              class="align-center pa-4 mx-auto"
-            >
-              <ChangeLanguage />
+            <v-card elevation="0" width="900" height="1600" style="background-color: #FCFBF5;"
+              class="align-center pa-4 mx-auto">
+              <!-- <ChangeLanguage /> -->
 
-              <v-row
-                style="    display: flex;
-    justify-content: flex-end;padding-right: 40px;padding-top: 10%"
-              >
+              <v-row style="    display: flex;
+    justify-content: flex-end;padding-right: 40px;padding-top: 1%">
                 <v-progress-circular indeterminate size="100 ">
                   <span style="font-size: 40px;">{{ timerCount }}</span>
                 </v-progress-circular>
               </v-row>
-              <v-text-field
-                v-model="search"
-                color="white"
-                ref="inputQr"
-                v-on:keyup.enter="SearchQrcode(search)"
-                style="width: 0px;color: white;"
-                placeholder-color="#ACACAC"
-              />
-              <v-row style="margin-top: 10%;">
+              <v-text-field v-model="search" color="white" ref="inputQr" v-on:keyup.enter="SearchQrcode(search)"
+                style="width: 0px;color: #FCFBF5;" placeholder-color="#ACACAC" />
+              <v-row style="margin-top: 10px;">
                 <v-col cols="12" md="12" style="text-align: center;">
-                  <p style="color: #126496;font-size: 60px;font-weight: bold;">
+                  <p style="color: #3A5408;font-size: 60px;font-weight: bold;">
                     {{ $t("message.PleaseScan") }}
                   </p>
                 </v-col>
               </v-row>
               <v-row>
-                <img
-                  v-if="message == ''"
-                  height="auto"
-                  width="700px"
-                  style="margin-top: 15%;
+                <img v-if="message == ''" height="auto" width="700px" style="margin-top: 15%;
                       margin-left: auto;
-                      margin-right: auto;"
-                  src="@/assets/terminal.png"
-                />
-                <p
-                  v-else
-                  style="color: #126496;font-size: 60px;font-weight: bold;margin-top: 15%;
+                      margin-right: auto;" src="@/assets/terminal.png" />
+                <p v-else style="color: #126496;font-size: 60px;font-weight: bold;margin-top: 15%;
                       margin-left: auto;
-                      margin-right: auto;"
-                >
+                      margin-right: auto;">
                   {{ message }}
                 </p>
               </v-row>
@@ -76,6 +49,20 @@
       </div>
     </v-img>
 
+    <v-footer v-bind="localAttrs" :padless="true" style="zoom: 200%;">
+      <v-row>
+        <v-col col="12">
+          <v-card v-if="text != ''" flat tile width="100%" class="text-center"
+            style="color: #F3DAB2;background-color: #3A5408; " @click="print()">
+            <v-card-text style="color:#F3DAB2 ;font-size: 20px;">
+              {{ text }}
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+
+    </v-footer>
+
     <v-dialog v-model="LoadingDialog" persistent width="300">
       <v-card color="#1D2939" dark>
         <v-card-text class="white--text">
@@ -83,11 +70,7 @@
             <p style="text-align: center;">Loading</p>
           </v-row>
           <v-row>
-            <v-progress-linear
-              indeterminate
-              color="#ffffff"
-              class="mb-0"
-            ></v-progress-linear>
+            <v-progress-linear indeterminate color="#ffffff" class="mb-0"></v-progress-linear>
           </v-row>
         </v-card-text>
       </v-card>
@@ -97,11 +80,12 @@
 <script>
 import axios from "axios";
 import enurl from "@/api/environment";
-import ChangeLanguage from "@/components/ChangeLanguage";
+// import Swal from "sweetalert2/dist/sweetalert2.js";
+// import ChangeLanguage from "@/components/ChangeLanguage";
 export default {
   name: "ScanQrcode",
   components: {
-    ChangeLanguage,
+    // ChangeLanguage,
   },
   data() {
     return {
@@ -115,7 +99,24 @@ export default {
       timerCount: 30,
       LoadingDialog: false,
       message: "",
+      text: "",
+      variant: 'fixed',
     };
+  },
+
+  computed: {
+
+    localAttrs() {
+      const attrs = {}
+
+      if (this.variant === 'default') {
+        attrs.absolute = false
+        attrs.fixed = false
+      } else {
+        attrs[this.variant] = true
+      }
+      return attrs
+    },
   },
 
   watch: {
@@ -136,7 +137,7 @@ export default {
       immediate: true, // This ensures the watcher is triggered upon creation
     },
   },
-  mounted: function() {
+  mounted: function () {
     // setInterval(() => {
     //   this.getCurrentDate();
     // }, 1000);
@@ -186,7 +187,7 @@ export default {
       self.invoiceNo = datalink[datalink.length - 1];
 
 
-
+      self.text = self.invoiceNo;
       localStorage.setItem("LogId", self.invoiceNo);
       let temp = {
         search: self.invoiceNo,
@@ -194,24 +195,34 @@ export default {
       };
       axios
         .post(`${self.url}Redemption/GetParkingDetail`, temp)
-        .then(function(response) {
+        .then(function (response) {
           if (response.data.status == 0) {
             // console.log(response.data.data);
 
-            if(response.data.data[0].plateNo.includes("unknown") || response.data.data[0].plateNo.includes("0000") ){
-              self.$router.push("/PlateNo/"+ self.invoiceNo);
-            }else{
-              self.$router.push("/DetailCarpark/"+ self.invoiceNo);
+            if (response.data.data[0].plateNo.includes("unknown") || response.data.data[0].plateNo.includes("0000")) {
+              self.$router.push("/PlateNo/" + self.invoiceNo);
+            } else {
+
+              setTimeout(() => {
+                self.$router.push("/ParkingPayment/" + self.invoiceNo);
+              }, 2000);
+              // self.$router.push("/ParkingPayment/" + self.invoiceNo);
             }
 
-           
+
           }
           if (response.data.status == 1) {
             // console.log(response.data.data);
-            self.$router.push("/MainMenu");
+            self.text = response.data.message;
+
+            setTimeout(() => {
+              self.$router.push("/MainMenu");
+            }, 2000);
+
+            // self.$router.push("/MainMenu");
           }
         })
-        .catch(function() {
+        .catch(function () {
           self.$router.push("/MainMenu");
         });
     },
@@ -224,6 +235,7 @@ export default {
     height: 1890px;
   }
 }
+
 @media all and (orientation: landscape) {
   .fullscreen {
     height: auto;

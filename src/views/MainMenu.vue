@@ -1,46 +1,31 @@
 <template>
   <div>
-    <v-img
-      width="100%"
-      height="auto"
-      class="fullscreen"
-      style="padding-top: 3%;"
-    >
-      <div>
-        <v-container>
-          <v-row>
-            <v-card
-            elevation="0"
-              width="900"
-              height="1800"
-              style="background-color: white;"
-              class="align-center pa-4 mx-auto"
-            >
+    <!-- <v-img width="100%" height="auto" class="fullscreen" style="padding-top: 3%;"> -->
+    <div>
+      <v-container>
+      <v-row>
+        <v-card elevation="0" width="900" height="1900" style="background-color: #FCFBF5;"
+          class="align-center pa-4 mx-auto">
 
-            <ChangeLanguage />
+          <ChangeLanguage />
 
-              <v-row style="margin-top: 5%;">
-                <v-col cols="12" md="12" style="text-align: center;">
-                  <img
-                    height="auto"
-                    width="650px"
-                    style="padding-top: 0rem;
+          <v-row style="margin-top: 5%;">
+            <v-col cols="12" md="12" style="text-align: center;">
+              <img height="auto" width="650px" style="
                       margin-left: auto;
-                      margin-right: auto;"
-                    src="@/assets/Logo_PUNN.jpg"
-                  />
-                </v-col>
-              </v-row>
-              <v-row style="margin-top: 5%;">
-                <v-col cols="12" md="12" style="text-align: center;">
-                  <p style="color: #126496;font-size: 60px;font-weight: bold;">
-                    <!-- ลงทะเบียนเข้าอาคาร -->
-                    <!-- One Bangkok Register -->
-                    {{ $t("message.Punnpay") }}
-                  </p>
-                </v-col>
-              </v-row>
-              <!-- <v-row style="margin-top: 30%;">
+                      margin-right: auto;" src="@/assets/KiingLogo.png" />
+            </v-col>
+          </v-row>
+          <v-row style="margin-top: 5%;">
+            <v-col cols="12" md="12" style="text-align: center;">
+              <p style="color: #3A5408;font-size: 60px;font-weight: bold;">
+                <!-- ลงทะเบียนเข้าอาคาร -->
+                <!-- One Bangkok Register -->
+                {{ $t("message.Punnpay") }}
+              </p>
+            </v-col>
+          </v-row>
+          <!-- <v-row style="margin-top: 30%;">
                 <v-col cols="12" md="12" style="text-align: center;">
                   <v-btn
                     color="primary"
@@ -54,52 +39,50 @@
                   >
                 </v-col>
               </v-row> -->
-              <v-row style="margin-top: 5%;">
-                <v-col cols="12" md="12" style="text-align: center;">
-                  <v-btn
-                    color="primary"
-                    class="white--text mt-2 text-capitalize"
-                    router
-                    width="620"
-                    @click="GotoScan()"
-                    style="font-size: 45px;border-radius: 50px"
-                    height="120"
-                    >{{ $t("message.Start") }}</v-btn
-                  >
-                </v-col>
-              </v-row>
-              <v-row style="margin-top: 5%;">
-                <v-col cols="12" md="12" style="text-align: center;">
-                  <v-btn
-                    color="primary"
-                    class="white--text mt-2 text-capitalize"
-                    router
-                    width="620"
-                    @click="GotoScanReprint()"
-                    style="font-size: 45px;border-radius: 50px"
-                    height="120"
-                    >{{ $t("message.Reprint") }}</v-btn
-                  >
-                </v-col>
-              </v-row>
-              <v-row style="margin-top: 10%;">
-                <v-col cols="12" md="12" >
-                  <img
-                    height="auto"
-                    width="892px"
-                    style="padding-top: 0rem;
+          <v-row style="margin-top: 5%;">
+            <v-col cols="12" md="12" style="text-align: center;">
+              <v-btn color="#3A5408" class="white--text mt-2 text-capitalize" router width="620" @click="GotoScan()"
+                style="font-size: 45px;border-radius: 50px" height="120">{{ $t("message.Start") }}</v-btn>
+            </v-col>
+          </v-row>
+          <v-row style="margin-top: 5%;">
+            <v-col cols="12" md="12" style="text-align: center;">
+              <v-btn color="#3A5408" class="white--text mt-2 text-capitalize" router width="620"
+                @click="GotoScanReprint()" style="font-size: 45px;border-radius: 50px" height="120">{{
+                  $t("message.Reprint") }}</v-btn>
+            </v-col>
+          </v-row>
+          <v-row style="margin-top: 10%;">
+            <v-col cols="12" md="12">
+              <img height="auto" width="892px" style="padding-top: 0rem;
                       margin-left: auto;
                       margin-right: auto;
-                      border-radius: 50px;"
-                    src="@/assets/dribbble_2.gif"
-                  />
-                </v-col>
-              </v-row>
-            </v-card>
+                      border-radius: 50px;" src="@/assets/dribbble_2.gif" />
+            </v-col>
           </v-row>
-        </v-container>
-      </div>
-    </v-img>
+          <!-- <v-footer v-bind="localAttrs" :padless="padless">
+            <v-row>
+              <v-col col="12" style="padding: 0;">
+                <v-card flat tile width="100%" class="text-center" style="color: #F3DAB2;background-color: #3A5408;"
+                  @click="GotoScan()">
+                  <v-card-text style="color:#F3DAB2 ;font-size: 50px;">
+                    {{ $t("message.Start") }}
+                  </v-card-text>
+                </v-card>
+              </v-col>
+            </v-row>
+
+          </v-footer> -->
+        </v-card>
+        
+      </v-row>
+
+      </v-container>
+    </div>
+
+
+
+
 
     <v-dialog v-model="LoadingDialog" persistent width="300">
       <v-card color="#1D2939" dark>
@@ -108,16 +91,14 @@
             <p style="text-align: center;">Loading</p>
           </v-row>
           <v-row>
-            <v-progress-linear
-              indeterminate
-              color="#ffffff"
-              class="mb-0"
-            ></v-progress-linear>
+            <v-progress-linear indeterminate color="#ffffff" class="mb-0"></v-progress-linear>
           </v-row>
         </v-card-text>
       </v-card>
     </v-dialog>
+
   </div>
+
 </template>
 <script>
 import axios from "axios";
@@ -137,22 +118,42 @@ export default {
       DefaultBG: "@/assets/1D2939.png",
       Datetime: "",
       LoadingDialog: false,
+      padless: true,
     };
   },
-  mounted: function() {
-    if(localStorage.getItem("LogId")== null){
+
+
+
+
+  mounted: function () {
+    if (localStorage.getItem("LogId") == null) {
       localStorage.setItem("LogId", '');
-    }else if(localStorage.getItem("LogId")!= ''){
+    } else if (localStorage.getItem("LogId") != '') {
       localStorage.setItem("LogId", '');
       location.reload();
-    }else{
+    } else {
       localStorage.setItem("LogId", '');
     }
 
-    
+
     // setInterval(() => {
     //   this.getCurrentDate();
     // }, 1000);
+  },
+
+  computed: {
+
+    localAttrs() {
+      const attrs = {}
+
+      if (this.variant === 'default') {
+        attrs.absolute = false
+        attrs.fixed = false
+      } else {
+        attrs[this.variant] = true
+      }
+      return attrs
+    },
   },
 
   methods: {
@@ -160,16 +161,16 @@ export default {
 
     GetIp() {
       let self = this;
-   
+
       axios
         .get(`${self.urlReader}General/GetIp`)
-        .then(function(response) {
+        .then(function (response) {
 
-        //  console.log(response.data);
-         localStorage.setItem("IP", response.data);
-       
+          //  console.log(response.data);
+          localStorage.setItem("IP", response.data);
+
         })
-        .catch(function(error) {
+        .catch(function (error) {
           self.MessageAlert = error;
         });
     },
@@ -216,9 +217,10 @@ export default {
 <style scoped>
 @media all and (orientation: portrait) {
   .fullscreen {
-    height: 1890px;
+    height: auto;
   }
 }
+
 @media all and (orientation: landscape) {
   .fullscreen {
     height: auto;

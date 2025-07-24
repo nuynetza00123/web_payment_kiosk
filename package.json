@@ -20,6 +20,7 @@
     "moment": "github:moment/moment",
     "pdfjs": "^2.4.1",
     "pdfjs-dist": "^2.5.207",
+    "qrcode": "^1.5.4",
     "qrious": "^4.0.2",
     "simple-keyboard": "^3.4.142",
     "simple-keyboard-layouts": "^1.15.165",
