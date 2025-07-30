@@ -95,7 +95,7 @@ export default {
       DefaultLogo: "@/assets/logo192.png",
       DefaultBG: "@/assets/1D2939.png",
       Datetime: "",
-      search: "",
+      search: "2025073014581102",
       timerCount: 30,
       LoadingDialog: false,
       message: "",
@@ -199,15 +199,12 @@ export default {
           if (response.data.status == 0) {
             // console.log(response.data.data);
 
-            if (response.data.data[0].plateNo.includes("unknown") || response.data.data[0].plateNo.includes("0000")) {
-              self.$router.push("/PlateNo/" + self.invoiceNo);
-            } else {
-
+     
               setTimeout(() => {
                 self.$router.push("/ParkingPayment/" + self.invoiceNo);
               }, 2000);
               // self.$router.push("/ParkingPayment/" + self.invoiceNo);
-            }
+            
 
 
           }
