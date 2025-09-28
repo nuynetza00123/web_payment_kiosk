@@ -23,8 +23,8 @@
           <div>
             <v-col cols="12" md="12" sm="12">
               <v-card elevation="10" class="white--text"
-                style="border-radius: 15px; background-color: #3A5408;max-width: 450px;">
-                <v-card-title class="text-h5" style="color: #F3DAB2;padding-bottom: 30px;">
+                style="border-radius: 15px; background-color: #00B5E4;max-width: 450px;">
+                <v-card-title class="text-h5" style="color: #FFFFFF;padding-bottom: 30px;">
                   <!-- <span><v-img alt="Logo" class="shrink app" contain :src="images.logo" transition="scale-transition"
                       width="35" style="margin-right: 20px;" /></span>  -->
                   {{ $t("message.ParkingDetails") }}
@@ -38,7 +38,7 @@
                     </v-col>
                     <v-col cols="10" md="10" sm="10">
                       {{ $t("message.ParkingArea") }} <br>
-                      <span style="font-size: 20px;font-weight: 800;">KING SQUARE</span>
+                      <span style="font-size: 20px;font-weight: 800;">V-ONE</span>
                     </v-col>
                   </v-row>
                   <v-divider style="margin-top: 20px;"></v-divider>
@@ -83,8 +83,8 @@
               </v-card>
 
               <v-card elevation="10" class="white--text"
-                style="border-radius: 15px; background-color: #3A5408;margin-top: 20px;max-width: 450px;">
-                <v-card-title class="text-h5" style="color: #F3DAB2;padding-bottom: 30px;">
+                style="border-radius: 15px; background-color: #00B5E4;margin-top: 20px;max-width: 450px;">
+                <v-card-title class="text-h5" style="color: #FFFFFF;padding-bottom: 30px;">
                   <!-- <span><v-img alt="Logo" class="shrink app" contain :src="images.logo" transition="scale-transition"
                       width="35" style="margin-right: 20px;" /></span> -->
                   {{ $t("message.ServiceFee") }}
@@ -122,9 +122,9 @@
           <div>
             <v-col cols="12" md="12" sm="12">
               <v-card elevation="10" class="white--text"
-                style="border-radius: 15px; background-color: #3A5408;max-width: 450px;">
+                style="border-radius: 15px; background-color: #00B5E4;max-width: 450px;">
 
-                <v-card-title class="text-h5" style="color: #F3DAB2;padding-bottom: 30px;">
+                <v-card-title class="text-h5" style="color: #FFFFFF;padding-bottom: 30px;">
                   {{ "Scan QrCode" }}
                 </v-card-title>
                 <v-card-subtitle style="background-color: white;padding-top: 10px;">
@@ -170,34 +170,18 @@
 
                 <v-card-subtitle style="background-color: white;padding-top: 0px;">
                   <v-row style="display: flex;justify-content: center;">
-                    <!-- <v-col cols="6" md="6" sm="6" style="display: flex;justify-content: center;">
-                      <v-card elevation="0"
-                        style="border-radius: 15px; background-color: #F3F4F6;width: 120px;height: 100px;border-color: #3A5408;border-width: 2px;display: grid;align-items: center;align-content: center;"
-                        @click="print()">
-
-                        <v-col cols="12" md="12" sm="12"
-                          style="display: grid;justify-content: space-around;padding: 0;">
-                          <span class="mdi mdi-download" style="font-size: 30px;color: #3A5408;"></span>
-                        </v-col>
-                        <v-col cols="12" md="12" sm="12"
-                          style="display: grid;justify-content: space-around;padding: 0;">
-                          <span style="font-size: 15px;color: #3A5408;">Download</span>
-
-                        </v-col>
-                      </v-card>
-                    </v-col> -->
                     <v-col cols="6" md="6" sm="6" style="display: flex;justify-content: center;">
                       <v-card elevation="0"
-                        style="border-radius: 15px; background-color: #F3F4F6;width: 120px;height: 100px;border-color: #3A5408;border-width: 2px;display: grid;align-items: center;align-content: center;"
+                        style="border-radius: 15px; background-color: #F3F4F6;width: 120px;height: 100px;border-color: #00B5E4;border-width: 2px;display: grid;align-items: center;align-content: center;"
                         @click="cancel(getQrcodeData.partnerTxnUid)">
 
                         <v-col cols="12" md="12" sm="12"
                           style="display: grid;justify-content: space-around;padding: 0;">
-                          <span class="mdi mdi-cancel" style="font-size: 30px;color: #3A5408;"></span>
+                          <span class="mdi mdi-cancel" style="font-size: 30px;color: #00B5E4;"></span>
                         </v-col>
                         <v-col cols="12" md="12" sm="12"
                           style="display: grid;justify-content: space-around;padding: 0;">
-                          <span style="font-size: 15px;color: #3A5408;">Cancel</span>
+                          <span style="font-size: 15px;color: #00B5E4;">Cancel</span>
 
                         </v-col>
                       </v-card>
@@ -231,7 +215,7 @@
                   </v-row>
 
                   <v-row cols="12" md="12" sm="12" justify="center"
-                    style="font-size: 30px;font-weight: 800;color: #3A5408;">
+                    style="font-size: 30px;font-weight: 800;color: #00B5E4;">
 
                     {{ payComplated ? $t("message.PaymentSuccessful") : $t("message.Paymentfailed") }}
                   </v-row>
@@ -318,32 +302,32 @@
                     <v-row style="display: flex;justify-content: center;">
                       <v-col cols="6" md="6" sm="6" style="display: flex;justify-content: center;">
                         <v-card elevation="2"
-                          style="border-radius: 15px; background-color: #F3F4F6;width: 120px;height: 100px;border-color: #3A5408;border-width: 2px;display: grid;align-items: center;align-content: center;"
+                          style="border-radius: 15px; background-color: #F3F4F6;width: 120px;height: 100px;border-color: #00B5E4;border-width: 2px;display: grid;align-items: center;align-content: center;"
                           :disabled="!payComplated" @click="Receipt()">
 
                           <v-col cols="12" md="12" sm="12"
                             style="display: grid;justify-content: space-around;padding: 0;">
-                            <span class="mdi mdi-download" style="font-size: 30px;color: #3A5408;"></span>
+                            <span class="mdi mdi-download" style="font-size: 30px;color: #00B5E4;"></span>
                           </v-col>
                           <v-col cols="12" md="12" sm="12"
                             style="display: grid;justify-content: space-around;padding: 0;">
-                            <span style="font-size: 15px;color: #3A5408;">Download</span>
+                            <span style="font-size: 15px;color: #00B5E4;">Download</span>
 
                           </v-col>
                         </v-card>
                       </v-col>
                       <v-col cols="6" md="6" sm="6" style="display: flex;justify-content: center;">
                         <v-card elevation="2"
-                          style="border-radius: 15px; background-color: #F3F4F6;width: 120px;height: 100px;border-color: #3A5408;border-width: 2px;display: grid;align-items: center;align-content: center;"
+                          style="border-radius: 15px; background-color: #F3F4F6;width: 120px;height: 100px;border-color: #00B5E4;border-width: 2px;display: grid;align-items: center;align-content: center;"
                           :disabled="payComplated"  @click="BackToMain()">
 
                           <v-col cols="12" md="12" sm="12"
                             style="display: grid;justify-content: space-around;padding: 0;">
-                            <span class="mdi mdi-refresh" style="font-size: 30px;color: #3A5408;"></span>
+                            <span class="mdi mdi-refresh" style="font-size: 30px;color: #00B5E4;"></span>
                           </v-col>
                           <v-col cols="12" md="12" sm="12" 
                             style="display: grid;justify-content: space-around;padding: 0;">
-                            <span style="font-size: 15px;color: #3A5408;">Try Again</span>
+                            <span style="font-size: 15px;color: #00B5E4;">Try Again</span>
 
                           </v-col>
                         </v-card>
@@ -464,7 +448,7 @@
         <v-row>
           <v-col v-if="defaultPage == 1" col="12">
             <v-card v-if="Total != 0" flat tile width="100%" class="text-center"
-              style="color: #F3DAB2;background-color: #3A5408;height: 55px;display: flex;justify-content: center;align-items: center;"
+              style="color: #FFFFFF;background-color: #00B5E4;height: 55px;display: flex;justify-content: center;align-items: center;"
               @click="PaymentWithKBank()">
 
               {{ $t("message.PayNow") }}
@@ -472,7 +456,7 @@
                 <span style="font-size: 20px;">{{ timerCount }}</span>
               </v-progress-circular>
             </v-card>
-            <v-card v-else flat tile width="100%" class="text-center" style="color: #F3DAB2;background-color: #F3F4F6;">
+            <v-card v-else flat tile width="100%" class="text-center" style="color: #FFFFFF;background-color: #F3F4F6;">
               <v-card-text style="color:white ;font-size: 20px;">
                 {{ $t("message.PayNow") }}
               </v-card-text>
@@ -481,7 +465,7 @@
 
           <v-col v-if="defaultPage == 2" col="12">
             <v-card flat tile width="100%" class="text-center"
-              style="color: #F3DAB2;background-color: #3A5408;height: 55px;display: flex;justify-content: center;align-items: center;"
+              style="color: #FFFFFF;background-color: #00B5E4;height: 55px;display: flex;justify-content: center;align-items: center;"
               @click="inquiry(getQrcodeData.partnerTxnUid)">
 
               {{ $t("message.Pleasepress") }}
@@ -493,7 +477,7 @@
 
             <v-col v-if="defaultPage == 3" col="12">
             <v-card flat tile width="100%" class="text-center"
-              style="color: #F3DAB2;background-color: #3A5408;height: 55px;display: flex;justify-content: center;align-items: center;"
+              style="color: #FFFFFF;background-color: #00B5E4;height: 55px;display: flex;justify-content: center;align-items: center;"
               @click="BackToMain()">
 
               {{ $t("message.mainPage") }}
@@ -504,9 +488,9 @@
           </v-col>
 
           <!-- <v-col v-if="defaultPage == 3" col="12">
-            <v-card flat tile width="100%" class="text-center" style="color: #F3DAB2;background-color: #3A5408;"
+            <v-card flat tile width="100%" class="text-center" style="color: #FFFFFF;background-color: #00B5E4;"
               @click="getParkingDetail(defaultPageLink)">
-              <v-card-text style="color:#F3DAB2 ;font-size: 20px;">
+              <v-card-text style="color:#FFFFFF ;font-size: 20px;">
                 {{ $t("message.mainPage") }}
               </v-card-text>
             </v-card>

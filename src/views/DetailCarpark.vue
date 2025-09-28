@@ -28,7 +28,6 @@
                     style="padding-top: 0rem;
                       margin-left: auto;
                       margin-right: auto;"
-                    src="@/assets/Logo_PUNN.jpg"
                   />
                 </v-col>
               </v-row>

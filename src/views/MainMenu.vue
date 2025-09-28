@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div style="max-height: 1920px;">
     <!-- <v-img width="100%" height="auto" class="fullscreen" style="padding-top: 3%;"> -->
-    <div>
+    <!-- <div>
       <v-container>
       <v-row>
         <v-card elevation="0" width="900" height="1900" style="background-color: #FCFBF5;"
@@ -18,36 +18,22 @@
           </v-row>
           <v-row style="margin-top: 5%;">
             <v-col cols="12" md="12" style="text-align: center;">
-              <p style="color: #3A5408;font-size: 60px;font-weight: bold;">
-                <!-- ลงทะเบียนเข้าอาคาร -->
-                <!-- One Bangkok Register -->
+              <p style="color: #00B5E4;font-size: 60px;font-weight: bold;">
+
                 {{ $t("message.Punnpay") }}
               </p>
             </v-col>
           </v-row>
-          <!-- <v-row style="margin-top: 30%;">
-                <v-col cols="12" md="12" style="text-align: center;">
-                  <v-btn
-                    color="primary"
-                    class="white--text mt-2 text-capitalize"
-                    router
-                    width="620"
-                    @click="GotoPDPA()"
-                    style="font-size: 45px;border-radius: 40px"
-                    height="100"
-                    >{{ $t("message.Register") }}</v-btn
-                  >
-                </v-col>
-              </v-row> -->
+      
           <v-row style="margin-top: 5%;">
             <v-col cols="12" md="12" style="text-align: center;">
-              <v-btn color="#3A5408" class="white--text mt-2 text-capitalize" router width="620" @click="GotoScan()"
+              <v-btn color="#00B5E4" class="white--text mt-2 text-capitalize" router width="620" @click="GotoScan()"
                 style="font-size: 45px;border-radius: 50px" height="120">{{ $t("message.Start") }}</v-btn>
             </v-col>
           </v-row>
           <v-row style="margin-top: 5%;">
             <v-col cols="12" md="12" style="text-align: center;">
-              <v-btn color="#3A5408" class="white--text mt-2 text-capitalize" router width="620"
+              <v-btn color="#00B5E4" class="white--text mt-2 text-capitalize" router width="620"
                 @click="GotoScanReprint()" style="font-size: 45px;border-radius: 50px" height="120">{{
                   $t("message.Reprint") }}</v-btn>
             </v-col>
@@ -60,27 +46,69 @@
                       border-radius: 50px;" src="@/assets/dribbble_2.gif" />
             </v-col>
           </v-row>
-          <!-- <v-footer v-bind="localAttrs" :padless="padless">
-            <v-row>
-              <v-col col="12" style="padding: 0;">
-                <v-card flat tile width="100%" class="text-center" style="color: #F3DAB2;background-color: #3A5408;"
-                  @click="GotoScan()">
-                  <v-card-text style="color:#F3DAB2 ;font-size: 50px;">
-                    {{ $t("message.Start") }}
-                  </v-card-text>
-                </v-card>
-              </v-col>
-            </v-row>
-
-          </v-footer> -->
+   
         </v-card>
         
       </v-row>
 
       </v-container>
-    </div>
+    </div> -->
 
+    <v-row>
+      <v-col cols="12" md="12" style="text-align: center;">
 
+        <v-sheet class="folded-corner" width="1080" height="1100" style="margin-top: 786px">
+          <!-- เนื้อหา -->
+          <v-container>
+               <v-row style="margin-top: 5%;">
+              <v-col cols="12" md="12" style="display: grid;justify-content: center;">
+                <v-img src="@/assets/logo car.png" width="500" height="350"></v-img>
+                
+              </v-col>
+            </v-row>
+
+            <v-row style="margin-top: 5%;">
+              <v-col cols="12" md="12" style="text-align: center;">
+                <span style="color: #00B5E4;font-size: 60px;font-weight: 800;">
+                  {{ "ระบบบริการชำระค่าจอดรถ" }}
+                </span>
+                <br>
+                <span style="color: #898A8C;font-size: 40px;font-weight: 700;">{{ "PARKING PAYMENT" }}</span>
+              </v-col>
+            </v-row>
+            <v-row style="display: flex;justify-content: center;">
+              <v-col cols="7" md="7">
+
+                <v-divider style="border-top-width: 8px !important;border-color: #00B5E4; "></v-divider>
+              </v-col>
+            </v-row>
+            <v-row style="margin-top: 5%;">
+              <v-col cols="12" md="12" style="display: flex;justify-content: center;">
+                <v-card elevation="0" class="box white--text mt-2 text-capitalize" width="620" color="#00B5E4"  @click="GotoScan()" 
+                  style="line-height:1.1" height="110">
+                  <span style="font-size: 45px;"> {{ "กดเพื่อดำเนินการ" }}</span> 
+                  <br>
+                  <span style="font-size: 25px;" > {{ "TAP To PROCEED" }}</span> 
+                </v-card>
+              </v-col>
+                  <v-col cols="12" md="12" style="display: flex;justify-content: center;">
+                <v-card elevation="0" class="box white--text mt-2 text-capitalize" width="620" color="#00B5E4"  @click="GotoScanReprint()" 
+                  style="line-height:1.1" height="110">
+                  <span style="font-size: 45px;"> {{ "กดเพื่อพิมพ์ซ้ำ" }}</span> 
+                  <br>
+                  <span style="font-size: 25px;" > {{ "TAP TO REPRINT" }}</span> 
+                </v-card>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" md="12" style="text-align: center;">
+
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-sheet>
+      </v-col>
+    </v-row>
 
 
 
@@ -103,11 +131,9 @@
 <script>
 import axios from "axios";
 import enurl from "@/api/environment";
-import ChangeLanguage from "@/components/ChangeLanguage";
 export default {
   name: "MainMenu",
   components: {
-    ChangeLanguage,
   },
   data() {
     return {
@@ -225,5 +251,46 @@ export default {
   .fullscreen {
     height: auto;
   }
+}
+
+.box {
+  
+  color: white;             /* สีตัวอักษร */
+  padding: 15px;            /* ระยะห่างภายใน */
+  text-align: center;       /* จัดข้อความกึ่งกลาง */
+  width: 350px;             /* ความกว้าง */
+
+  /* --- หัวใจสำคัญคือบรรทัดนี้ --- */
+  clip-path: polygon(
+    25px 0,      /* จุดที่ 1: เริ่มจากมุมบน แต่ขยับขวามา 25px */
+    100% 0,      /* จุดที่ 2: ไปที่มุมบนขวา */
+    100% calc(100% - 25px), /* จุดที่ 3: ลงมาที่ขอบล่าง แต่เว้นระยะจากมุม 25px */
+    calc(100% - 25px) 100%,/* จุดที่ 4: ไปที่มุมล่าง แต่ขยับซ้ายมา 25px */
+    0 100%,      /* จุดที่ 5: ไปที่มุมล่างซ้าย */
+    0 25px       /* จุดที่ 6: กลับขึ้นไปที่ขอบบน แต่เว้นระยะจากมุม 25px */
+  );
+}
+
+.folded-corner {
+  position: relative;
+  background-color: #ffffff;
+  /* พื้นฟ้า */
+  color: white;
+  border-radius: 0;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* รอยพับขวาล่าง */
+.folded-corner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 60px solid #00B5E4;
+  /* border-top: 60px solid #000000;  */
+  border-left: 60px solid transparent;
 }
 </style>

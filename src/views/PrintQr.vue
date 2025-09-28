@@ -18,7 +18,7 @@
                 <v-col cols="12" md="12" style="
                       text-align: center;
                       font-size: 60px;
-                      color: #3A5408;
+                      color: #00B5E4;
                       font-weight: bold;
                     ">
                   {{ $t("message.Receipt") }}
@@ -228,9 +228,9 @@
           <v-footer v-bind="localAttrs" :padless="true" style="zoom: 200%;">
             <v-row>
               <v-col col="12">
-                <v-card flat tile width="100%" class="text-center" style="color: #F3DAB2;background-color: #3A5408;"
+                <v-card flat tile width="100%" class="text-center" style="color: #FFFFFF;background-color: #00B5E4;"
                   @click="print()">
-                  <v-card-text style="color:#F3DAB2 ;font-size: 20px;">
+                  <v-card-text style="color:#FFFFFF ;font-size: 20px;">
                     {{ $t("message.PrintReceipt") }}
                   </v-card-text>
                 </v-card>

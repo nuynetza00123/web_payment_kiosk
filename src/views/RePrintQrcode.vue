@@ -1,12 +1,11 @@
 <template>
   <div>
-    <v-img width="100%" height="auto" class="fullscreen" style="padding-top: 3%;">
+    <!-- <v-img width="100%" height="auto" class="fullscreen" style="padding-top: 3%;">
       <div>
         <v-container>
           <v-row>
             <v-card elevation="0" width="900" height="1600" style="background-color: #FCFBF5;"
               class="align-center pa-4 mx-auto">
-              <!-- <ChangeLanguage /> -->
 
               <v-row style="    display: flex;
     justify-content: flex-end;padding-right: 40px;padding-top: 1%">
@@ -18,7 +17,7 @@
                 style="width: 0px;color: white;" placeholder-color="#ACACAC" />
               <v-row style="margin-top: 10%;">
                 <v-col cols="12" md="12" style="text-align: center;">
-                  <p style="color: #3A5408;font-size: 60px;font-weight: bold;">
+                  <p style="color: #00B5E4;font-size: 60px;font-weight: bold;">
                     {{ $t("message.PleaseScan") }}
                   </p>
                 </v-col>
@@ -33,28 +32,66 @@
                   {{ message }}
                 </p>
               </v-row>
-              <!-- <v-row>
-                <img
-                  height="auto"
-                  width="400px"
-                  style="margin-top: 20%;
-                      margin-left: auto;
-                      margin-right: auto;"
-                  src="@/assets/arrow01.gif"
-                />
-              </v-row> -->
             </v-card>
           </v-row>
         </v-container>
       </div>
-    </v-img>
+    </v-img> -->
+
+     <v-row>
+      <v-col cols="12" md="12" style="text-align: center;">
+
+        <v-sheet class="folded-corner" width="1080" height="1300" style="margin-top: 550px">
+          <v-container>
+            <v-row>
+              <v-card elevation="0" width="900" height="1800" style="
+                background-color: white;
+              " class="align-center pa-4 mx-auto">
+
+
+                <v-row style="margin-top: 3%">
+                  <v-col cols="12" md="12" style="
+                    text-align: center;
+                    font-size: 60px;
+                    color: #00B5E4;
+                    font-weight: bold;
+                  ">
+                    {{ $t("message.PleaseScan") }}
+                  </v-col>
+                </v-row>
+                <v-row style="    display: flex;
+    justify-content: flex-end;padding-right: 40px;padding-top: 10%">
+                  <v-progress-circular color="#00B5E4" indeterminate size="100 ">
+                    <span style="font-size: 40px;">{{ timerCount }}</span>
+                  </v-progress-circular>
+                </v-row>
+                 <v-text-field v-model="search" color="white" ref="inputQr" v-on:keyup.enter="SearchQrcode(search)"
+                style="width: 0px;color: #FCFBF5;" placeholder-color="#ACACAC" />
+                <v-row>
+                  <img v-if="message == ''" height="auto" width="700px" style="margin-top: 5%;
+                      margin-left: auto;
+                      margin-right: auto;" src="@/assets/terminal.png" />
+                  <p v-else style="color: #126496;font-size: 60px;font-weight: bold;margin-top: 5%;
+                      margin-left: auto;
+                      margin-right: auto;">
+                    {{ message }}
+                  </p>
+                </v-row>
+
+              </v-card>
+            </v-row>
+
+          </v-container>
+        </v-sheet>
+      </v-col>
+    </v-row>
 
     <v-footer v-bind="localAttrs" :padless="true" style="zoom: 200%;">
       <v-row>
         <v-col col="12">
           <v-card v-if="text != ''" flat tile width="100%" class="text-center"
-            style="color: #F3DAB2;background-color: #3A5408; " @click="print()">
-            <v-card-text style="color:#F3DAB2 ;font-size: 20px;">
+            style="color: #FFFFFF;background-color: #00B5E4; " @click="print()">
+            <v-card-text style="color:#FFFFFF ;font-size: 20px;">
               {{ text }}
             </v-card-text>
           </v-card>

@@ -1,18 +1,18 @@
 <template>
   <nav style="z-index:3;zoom: 200%;">
-    <v-toolbar color="#3A5408" height="80">
-      <span class="mdi mdi-home" style="font-size: 30px;color: #F3DAB2" @click="home()"></span>
+    <v-toolbar color="#00B5E4" height="80">
+      <span class="mdi mdi-home" style="font-size: 30px;color: #FFFFFF" @click="home()"></span>
       <v-img alt="Logo" class="shrink app" contain :src="images.logo" transition="scale-transition" width="100" />
-      <p style="color: #F3DAB2;margin-left:1rem;font-size: 18px;margin-top: 14px;font-weight: bold;cursor: default;">
+      <p style="color: #FFFFFF;margin-left:1rem;font-size: 18px;margin-top: 14px;font-weight: bold;cursor: default;">
         {{ $t("message.ParkingPayment") }}
 
       </p>
       <v-spacer></v-spacer>
 
-      <span v-show="$i18n.locale == 'en'" style="color: #F3DAB2;" @click="SwitchLocales('en')">
+      <span v-show="$i18n.locale == 'en'" style="color: #FFFFFF;" @click="SwitchLocales('en')">
         EN
       </span>
-      <span v-show="$i18n.locale == 'th'" style="color: #F3DAB2;" @click="SwitchLocales('th')">
+      <span v-show="$i18n.locale == 'th'" style="color: #FFFFFF;" @click="SwitchLocales('th')">
         TH
       </span>
 
@@ -56,7 +56,7 @@
 import axios from "axios";
 import store from "../store";
 import enurl from "@/api/environment";
-import logo from '@/assets/Kinglogo1.png';
+import logo from '@/assets/vonelogo.png';
 export default {
   data() {
     return {

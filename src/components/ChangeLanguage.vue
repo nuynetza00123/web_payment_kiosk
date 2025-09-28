@@ -22,10 +22,10 @@
         <span v-if="lang == 'th'" style="font-size: 50px;margin-top: 5px;color: #126496;text-decoration: underline;" >TH</span>
         <span v-if="lang != 'th'" style="font-size: 50px;margin-top: 5px;color: #126496;" @click="SwitchLocales('th')">TH</span> -->
       
-          <span v-show="$i18n.locale == 'en'" style="color: #3A5408;font-size: 50px;margin-top: 5px;" @click="SwitchLocales('th')">
+          <span v-show="$i18n.locale == 'en'" style="color: #00B5E4;font-size: 50px;margin-top: 5px;" @click="SwitchLocales('th')">
             EN
           </span>
-          <span   v-show="$i18n.locale == 'th'" style="color: #3A5408;font-size: 50px;margin-top: 5px;" @click="SwitchLocales('en')">
+          <span   v-show="$i18n.locale == 'th'" style="color: #00B5E4;font-size: 50px;margin-top: 5px;" @click="SwitchLocales('en')">
             TH
           </span>
        
