@@ -135,7 +135,7 @@ export default {
       DefaultLogo: "@/assets/logo192.png",
       DefaultBG: "@/assets/1D2939.png",
       Datetime: "",
-      search: "2025073014581102",
+      search: "",
       timerCount: 30,
       LoadingDialog: false,
       message: "",

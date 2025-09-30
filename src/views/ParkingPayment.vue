@@ -118,6 +118,56 @@
           </div>
         </v-card-text>
 
+        <v-card-text v-if="defaultPage == 4" style="display: flex;justify-content: center;">
+          <div>
+            <v-col cols="12" md="12" sm="12">
+              <v-card elevation="10" class="white--text"
+                style="border-radius: 15px; background-color: #00B5E4;max-width: 450px;">
+
+                <v-card-title class="text-h5" style="color: #FFFFFF;padding-bottom: 30px;">
+                  {{ "Select Payment" }}
+                </v-card-title>
+                <v-card-subtitle style="background-color: white;padding-top: 5%;">
+                  <v-row>
+
+                    <v-col cols="12" md="12" sm="12" style="display: flex;justify-content: center;">
+                      <v-card class="mx-auto" max-width="100% ;" @click="native_pay('promptpay')">
+                        <v-img class="white--text align-end" height="120px" :src="thaiQr" cover>
+                          <!-- <v-card-title>Thai Or</v-card-title> -->
+                        </v-img>
+
+
+                      </v-card>
+                    </v-col>
+
+
+
+                  </v-row>
+                  <v-divider style="margin-top: 20px;"></v-divider>
+                </v-card-subtitle>
+
+                <v-card-subtitle style="background-color: white;padding-top: 0px;padding-bottom: 0px;">
+                  <v-row>
+                    <v-col cols="12" md="12" sm="12" style="display: flex;justify-content: center;">
+                      <v-card class="mx-auto" max-width="100%" @click="native_pay('truemoney')">
+                        <v-img class="white--text align-end" height="120px" :src="truemoney" cover>
+                        </v-img>
+
+
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                  <v-divider style="margin-top: 20px;"></v-divider>
+                </v-card-subtitle>
+
+
+              </v-card>
+
+
+            </v-col>
+          </div>
+        </v-card-text>
+
         <v-card-text v-if="defaultPage == 2" style="display: flex;justify-content: center;">
           <div>
             <v-col cols="12" md="12" sm="12">
@@ -133,12 +183,14 @@
                     <v-col cols="12" md="12" sm="12" style="display: flex;justify-content: center;">
                       <!-- <v-img  alt="Logo" class="ma-0 pa-0" :src="promptpaylogo" height="120px"
                         style="padding-top: 10px;width: 80%;" /> -->
-                      <v-img alt="Logo" class="shrink app" contain :src="promptpaylogo" transition="scale-transition"
+                      <v-img v-if="selectPayment == 'promptpay'" alt="Logo" class="shrink app" contain
+                        :src="promptpaylogo" transition="scale-transition" width="250" style="margin-right: 20px;" />
+                      <v-img v-else alt="Logo" class="shrink app" contain :src="logotrue" transition="scale-transition"
                         width="250" style="margin-right: 20px;" />
                     </v-col>
 
                     <v-col cols="12" md="12" sm="12" style="display: flex;justify-content: center;">
-                      <img id="capture" :src="qrImage" />
+                      <img id="capture" :src="qrImage" style="width: 200px; height: 200px;" />
                     </v-col>
                     <v-col cols="6" md="6" sm="6" style="text-align: center;">
                       {{ $t("message.TotalPayment") }} <br>
@@ -155,15 +207,15 @@
 
                 <v-card-subtitle style="background-color: white;padding-top: 0px;padding-bottom: 0px;">
                   <v-row>
-                    <v-col cols="2" md="2" sm="2" style="display: flex
+                    <!-- <v-col cols="2" md="2" sm="2" style="display: flex
 ;
     align-items: center;justify-content: space-around;">
                       <span class="mdi mdi-license" style="font-size: 30px;"></span>
-                    </v-col>
-                    <v-col cols="10" md="10" sm="10">
+                    </v-col> -->
+                    <!-- <v-col cols="10" md="10" sm="10">
                       {{ "Account Name" }} <br>
                       <span style="font-size: 20px;font-weight: 800;"> {{ getQrcodeData.accountName }}</span>
-                    </v-col>
+                    </v-col> -->
                   </v-row>
                   <v-divider style="margin-top: 20px;"></v-divider>
                 </v-card-subtitle>
@@ -173,7 +225,7 @@
                     <v-col cols="6" md="6" sm="6" style="display: flex;justify-content: center;">
                       <v-card elevation="0"
                         style="border-radius: 15px; background-color: #F3F4F6;width: 120px;height: 100px;border-color: #00B5E4;border-width: 2px;display: grid;align-items: center;align-content: center;"
-                        @click="cancel(getQrcodeData.partnerTxnUid)">
+                        @click="cancel(ksherPay.mch_order_no)">
 
                         <v-col cols="12" md="12" sm="12"
                           style="display: grid;justify-content: space-around;padding: 0;">
@@ -234,7 +286,7 @@
                       </v-col>
 
                       <v-col cols="6" md="6" sm="6" align="right">
-                        {{ inquiryList.partnerTxnUid }}
+                        {{ inquiryList.invoiceNo }}
                       </v-col>
                     </v-row>
                     <v-row cols="12" md="12" sm="12" justify="center">
@@ -252,7 +304,7 @@
                       </v-col>
 
                       <v-col cols="5" md="5" sm="5" align="right">
-                        {{ numberWithCommas(inquiryList.txnAmount) }} {{
+                        {{ numberWithCommas(inquiryList.amount) }} {{
                           $t("message.Baht") }}
                       </v-col>
                     </v-row>
@@ -262,8 +314,8 @@
                     style="border-radius: 20px;font-size: 15px;margin-top: 30px;">
                     <v-row cols="12" md="12" sm="12" justify="center">
                       <v-col cols="10" md="10" sm="10" style="display: flex;justify-content: space-between;">
-                       <span >{{ $t("message.Referencenumber") }}</span>
-                       <span > {{ inquiryList.partnerTxnUid }}</span> 
+                        <span>{{ $t("message.Referencenumber") }}</span>
+                        <span> {{ inquiryList.partnerTxnUid }}</span>
                       </v-col>
 
                       <!-- <v-col cols="6" md="6" sm="6" align="right">
@@ -272,8 +324,8 @@
                     </v-row>
                     <v-row cols="12" md="12" sm="12" justify="center">
                       <v-col cols="10" md="10" sm="10" style="display: flex;justify-content: space-between;">
-                      <span > {{ $t("message.Reason") }}</span> 
-                      <span >{{ inquiryList.txnStatus }}</span>   
+                        <span> {{ $t("message.Reason") }}</span>
+                        <span>{{ inquiryList.txnStatus }}</span>
                       </v-col>
 
                       <!-- <v-col cols="5" md="5" sm="5" align="right">
@@ -319,13 +371,13 @@
                       <v-col cols="6" md="6" sm="6" style="display: flex;justify-content: center;">
                         <v-card elevation="2"
                           style="border-radius: 15px; background-color: #F3F4F6;width: 120px;height: 100px;border-color: #00B5E4;border-width: 2px;display: grid;align-items: center;align-content: center;"
-                          :disabled="payComplated"  @click="BackToMain()">
+                          :disabled="payComplated" @click="BackToMain()">
 
                           <v-col cols="12" md="12" sm="12"
                             style="display: grid;justify-content: space-around;padding: 0;">
                             <span class="mdi mdi-refresh" style="font-size: 30px;color: #00B5E4;"></span>
                           </v-col>
-                          <v-col cols="12" md="12" sm="12" 
+                          <v-col cols="12" md="12" sm="12"
                             style="display: grid;justify-content: space-around;padding: 0;">
                             <span style="font-size: 15px;color: #00B5E4;">Try Again</span>
 
@@ -446,17 +498,26 @@
 
       <v-footer v-bind="localAttrs" :padless="padless">
         <v-row>
-          <v-col v-if="defaultPage == 1" col="12">
-            <v-card v-if="Total != 0" flat tile width="100%" class="text-center"
-              style="color: #FFFFFF;background-color: #00B5E4;height: 55px;display: flex;justify-content: center;align-items: center;"
-              @click="PaymentWithKBank()">
+          <v-col v-if="defaultPage == 1 && Total != 0" col="12" style="display: inline-flex;">
 
-              {{ $t("message.PayNow") }}
-              <v-progress-circular indeterminate size="35" style="margin-left: 10px;">
-                <span style="font-size: 20px;">{{ timerCount }}</span>
-              </v-progress-circular>
+            <v-card tile width="50%" class="text-center" style="color: #FFFFFF;background-color: #F40005;height: 55px;display: flex;
+    align-items: center;
+    justify-content: space-around;" @click="native_pay('truemoney')">
+
+              {{ 'True Money' }}
+
             </v-card>
-            <v-card v-else flat tile width="100%" class="text-center" style="color: #FFFFFF;background-color: #F3F4F6;">
+            <v-card tile width="50%" class="text-center" style="color: #FFFFFF;background-color: #0E3D67;height: 55px;display: flex;
+    align-items: center;
+    justify-content: space-around;" @click="native_pay('promptpay')">
+
+              {{ 'Thai Qr' }}
+
+            </v-card>
+          </v-col>
+
+          <v-col v-if="defaultPage == 1 && Total == 0" col="12">
+            <v-card flat tile width="100%" class="text-center" style="color: #FFFFFF;background-color: #F3F4F6;">
               <v-card-text style="color:white ;font-size: 20px;">
                 {{ $t("message.PayNow") }}
               </v-card-text>
@@ -466,7 +527,7 @@
           <v-col v-if="defaultPage == 2" col="12">
             <v-card flat tile width="100%" class="text-center"
               style="color: #FFFFFF;background-color: #00B5E4;height: 55px;display: flex;justify-content: center;align-items: center;"
-              @click="inquiry(getQrcodeData.partnerTxnUid)">
+              @click="inquiry(ksherPay.mch_order_no)">
 
               {{ $t("message.Pleasepress") }}
               <v-progress-circular indeterminate size="35" style="margin-left: 10px;">
@@ -475,7 +536,7 @@
             </v-card>
           </v-col>
 
-            <v-col v-if="defaultPage == 3" col="12">
+          <v-col v-if="defaultPage == 3" col="12">
             <v-card flat tile width="100%" class="text-center"
               style="color: #FFFFFF;background-color: #00B5E4;height: 55px;display: flex;justify-content: center;align-items: center;"
               @click="BackToMain()">
@@ -551,6 +612,9 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 // import logo from '@/assets/Kinglogo.png';
 import ParkingData from "@/models/ParkingData";
 import promptpaylogo from "@/assets/promptpay.jpg";
+import truemoney from "@/assets/truemoney.jpg";
+import logotrue from "@/assets/logotrue.png";
+import thaiQr from "@/assets/ThaiQr.jpg";
 import requestData from "@/models/request";
 import html2canvas from "html2canvas";
 // import QrCode from 'vue-qrcode-component'
@@ -567,8 +631,11 @@ export default {
       images: {
         logo: "",
       },
-      timerCount: 99,
+      timerCount: 60,
       promptpaylogo: promptpaylogo,
+      truemoney: truemoney,
+      logotrue: logotrue,
+      thaiQr: thaiQr,
       padless: true,
       variant: 'fixed',
 
@@ -648,7 +715,9 @@ export default {
       minutes: null,
       seconds: null,
       isEnded: null,
+      selectPayment: "promptpay",
       inquiryList: [],
+      ksherPay: [],
     };
   },
   computed: {
@@ -683,10 +752,10 @@ export default {
   },
 
   mounted() {
-    let self = this;
+    let that = this;
     var logID = window.location.href;
     this.LogCarparkID = logID;
-    // self.GetLogoTemplate();
+    // that.GetLogoTemplate();
 
     let data = this.LogCarparkID.split("/");
     let invoiceNo = data[data.length - 1];
@@ -696,9 +765,9 @@ export default {
     } else {
       this.defaultPage = 1;
       this.invoiceNoCarparkid = logID;
-      // self.AlldataDetailsReceiptList(invoiceNo);
-      self.getParkingDetail(invoiceNo);
-      // self.PaymentWithArgentoTech();
+      // that.AlldataDetailsReceiptList(invoiceNo);
+      that.getParkingDetail(invoiceNo);
+      // that.PaymentWithArgentoTech();
     }
   },
 
@@ -708,10 +777,6 @@ export default {
 
   methods: {
 
-    BackToMain() {
-      let self = this;
-      self.$router.push("/MainMenu");
-    },
     countDownTimer() {
       let that = this;
       if (that.countDown > 0 && that.defaultPage == 2) {
@@ -745,25 +810,25 @@ export default {
     },
 
     GetLogoTemplate() {
-      let self = this;
+      let that = this;
       let tempdata = {
         project: "Sathon",
       };
       axios
-        .post(`${self.url}Payment/GetLogoTemplate`, tempdata)
+        .post(`${that.url}Payment/GetLogoTemplate`, tempdata)
         .then(function (response) {
           if (response.data.status == 0) {
-            self.imagesLogo = response.data.data.base64;
+            that.imagesLogo = response.data.data.base64;
             // console.log(response.data.data);
           }
           if (response.data.status == 1) {
-            self.overlay = false;
+            that.overlay = false;
           }
         })
         .catch(function (error) {
-          self.MessageAlert = error;
-          self.TypeAlert = "error";
-          self.AlertDialog = true;
+          that.MessageAlert = error;
+          that.TypeAlert = "error";
+          that.AlertDialog = true;
         });
     },
     searchData() {
@@ -771,9 +836,9 @@ export default {
     },
 
     async getParkingDetail(logID) {
-      let self = this;
-      self.defaultPage = 1;
-      self.overlay = true;
+      let that = this;
+      that.defaultPage = 1;
+      that.overlay = true;
       if (logID == 0) {
         return;
       } else {
@@ -782,23 +847,23 @@ export default {
           lostCard: false,
         };
         await axios
-          .post(`${self.url}Redemption/GetParkingDetail`, tempdata)
+          .post(`${that.url}Redemption/GetParkingDetail`, tempdata)
           .then(function (response) {
             if (response.data.status == 0) {
-              self.Total = response.data.data[0].Total;
-              // self.SaveKioskPaymentLog(response.data.data[0]);
-              self.BindingDataResponse(response.data.data[0]);
-              self.parkingData = response.data.data[0];
-              // console.log(self.parkingData);
+              that.Total = response.data.data[0].Total;
+              // that.SaveKioskPaymentLog(response.data.data[0]);
+              that.BindingDataResponse(response.data.data[0]);
+              that.parkingData = response.data.data[0];
+              // console.log(that.parkingData);
 
 
 
-              self.overlay = false;
+              that.overlay = false;
             }
             if (response.data.status == 1) {
               if (response.data.message == "QR Exit !") {
-                self.receipt = true,
-                  self.AlldataDetailsReceiptList(logID);
+                that.receipt = true,
+                  that.AlldataDetailsReceiptList(logID);
                 // Swal.fire({
                 //   icon: "warning",
                 //   title: response.data.message,
@@ -806,12 +871,12 @@ export default {
                 //   confirmButtonText: "Show Receipt",
                 // }).then((result) => {
                 //   if (result.isConfirmed) {
-                //     self.$router.push("/Receipt/" + self.defaultPageLink);
+                //     that.$router.push("/Receipt/" + that.defaultPageLink);
                 //   } else {
-                //     self.$router.push("/" + 0);
+                //     that.$router.push("/" + 0);
                 //   }
                 // });
-                self.overlay = false;
+                that.overlay = false;
               } else {
                 Swal.fire({
                   icon: "warning",
@@ -820,7 +885,7 @@ export default {
                   timer: 1500,
                 });
 
-                // self.$router.push("/" + 0);
+                // that.$router.push("/" + 0);
               }
 
               // Swal.fire({
@@ -830,21 +895,21 @@ export default {
               //   timer: 1500,
               // });
 
-              // self.$router.push("/ParkingPayment/" + 0);
-              self.overlay = false;
-              self.defaultPage = 1;
+              // that.$router.push("/ParkingPayment/" + 0);
+              that.overlay = false;
+              that.defaultPage = 1;
             }
           })
           .catch(function (error) {
-            self.MessageAlert = error;
-            self.TypeAlert = "error";
-            self.AlertDialog = true;
+            that.MessageAlert = error;
+            that.TypeAlert = "error";
+            that.AlertDialog = true;
           });
       }
     },
 
     async AlldataDetailsReceiptList(logID) {
-      let self = this;
+      let that = this;
       if (logID == 0) {
         return;
       } else {
@@ -852,25 +917,25 @@ export default {
           trn_Log_ID: logID,
         };
         await axios
-          .post(`${self.urlCarpark}Redemption/AlldataDetailsReceiptList`, tempdata)
+          .post(`${that.urlCarpark}Redemption/AlldataDetailsReceiptList`, tempdata)
           .then(function (response) {
             if (response.data.status == 0) {
 
 
               if (response.data.data.data.length > 0) {
-                self.checkreceipt = true,
-                  self.defaultPage = 2,
+                that.checkreceipt = true,
+                  that.defaultPage = 2,
 
-                  self.AlldataDetailsReceiptlist = response.data.data.data;
+                  that.AlldataDetailsReceiptlist = response.data.data.data;
                 console.log(response.data.data.data.length);
               }
             }
 
           })
           .catch(function (error) {
-            self.MessageAlert = error;
-            self.TypeAlert = "error";
-            self.AlertDialog = true;
+            that.MessageAlert = error;
+            that.TypeAlert = "error";
+            that.AlertDialog = true;
           });
       }
     },
@@ -878,49 +943,61 @@ export default {
 
 
     getParkingDetailReceipt(data) {
-      let self = this;
-      self.overlay = true;
+      let that = this;
+      that.overlay = true;
 
-      self.$router.push("/Receipt/" + data);
+      that.$router.push("/Receipt/" + data);
       // Receipt
 
     },
 
-    async PaymentWithKBank() {
-      let self = this;
-      self.overlay = true;
+
+    selectPaymentpage() {
+      let that = this;
+      that.defaultPage = 4;
+      // that.selectPayment = data;
+    },
+
+    native_pay(data) {
+      let that = this;
+      // that.defaultPage = 4;
+      that.selectPayment = data;
 
       let tempdata = {
-        logId: self.parkingData.logId,
-        ticketNo: self.parkingData.ticketNo,
-        plateNo: self.parkingData.plateNo,
-        total: self.parkingData.total,
+        invoiceNo: that.parkingData.logId,
+        description: that.parkingData.ticketNo,
+        amount: that.parkingData.total,
+        currency: "THB",
+        paymentChannel: that.selectPayment,
       };
 
       axios
-        .post(`${self.url}Payment/request`, tempdata)
+        .post(`${that.url}Payment/native_pay`, tempdata)
         .then(function (response) {
           if (response.status == 200) {
-            self.overlay = false;
-            if (response.data.statusCode == "00") {
-              self.countDown = 600;
-              // self.timerCount = 60;
+            that.overlay = false;
+            if (response.data.code == 0) {
+              console.log(response.data.data);
+              that.ksherPay = response.data.data;
+              that.countDown = 600;
+              that.qrImage = response.data.data.imgdat;
+              // that.timerCount = 60;
 
-              self.getQrcodeData = response.data;
+              // that.getQrcodeData = response.data;
 
-              self.inquiry(self.getQrcodeData.partnerTxnUid);
+              that.inquiry(that.ksherPay.mch_order_no);
 
-              QRCode.toDataURL(self.getQrcodeData.qrCode, { errorCorrectionLevel: 'M' })
-                .then((url) => {
-                  self.qrImage = url;
-                })
-                .catch((err) => {
-                  console.error(err);
-                });
-              // console.log(self.qrImage);
+              // QRCode.toDataURL(that.getQrcodeData.qrCode, { errorCorrectionLevel: 'M' })
+              //   .then((url) => {
+              //     that.qrImage = url;
+              //   })
+              //   .catch((err) => {
+              //     console.error(err);
+              //   });
+              // console.log(that.qrImage);
 
-              self.defaultPage = 2;
-              self.countDownTimer();
+              that.defaultPage = 2;
+              that.countDownTimer();
             }
 
 
@@ -930,163 +1007,242 @@ export default {
 
         })
         .catch(function (error) {
-          self.MessageAlert = error;
-          self.TypeAlert = "error";
-          self.AlertDialog = true;
+          that.MessageAlert = error;
+          that.TypeAlert = "error";
+          that.AlertDialog = true;
+        });
+
+
+
+
+    },
+
+    async PaymentWithKBank() {
+      let that = this;
+      that.overlay = true;
+
+      let tempdata = {
+        logId: that.parkingData.logId,
+        ticketNo: that.parkingData.ticketNo,
+        plateNo: that.parkingData.plateNo,
+        total: that.parkingData.total,
+      };
+
+      axios
+        .post(`${that.url}Payment/request`, tempdata)
+        .then(function (response) {
+          if (response.status == 200) {
+            that.overlay = false;
+            if (response.data.statusCode == "00") {
+              that.countDown = 600;
+              // that.timerCount = 60;
+
+              that.getQrcodeData = response.data;
+
+              that.inquiry(that.getQrcodeData.partnerTxnUid);
+
+              QRCode.toDataURL(that.getQrcodeData.qrCode, { errorCorrectionLevel: 'M' })
+                .then((url) => {
+                  that.qrImage = url;
+                })
+                .catch((err) => {
+                  console.error(err);
+                });
+              // console.log(that.qrImage);
+
+              that.defaultPage = 2;
+              that.countDownTimer();
+            }
+
+
+            // console.log(response.data);
+
+          }
+
+        })
+        .catch(function (error) {
+          that.MessageAlert = error;
+          that.TypeAlert = "error";
+          that.AlertDialog = true;
         });
     },
 
 
     async inquiry(data) {
-      let self = this;
-      // self.overlay = true;
+      let that = this;
+      // that.overlay = true;
       console.log(data);
-      // console.log(self.defaultPage);
       let tempdata = {
-        partnerTxnUid: data,
+        TransactionNo: data,
       };
-      // let tempdata = {
-      //   partnerTxnUid: "FS20240813162218",
-      //  partnerTxnUid: "FS202507170756102502523",
-      // };
+
 
       axios
-        .post(`${self.url}Payment/inquiry`, tempdata)
+        .post(`${that.url}Payment/InquiryPayment`, tempdata)
         .then(function (response) {
+
           if (response.status == 200) {
-
-            if (response.data.statusCode == "00") {
-
-              self.inquiryList = response.data;
-
-              if (response.data.txnStatus == "PAID") {
-
-                self.overlay = true;
-                self.payComplated = true;
-                self.defaultPage = 3;
-
-                self.overlay = false;
+            that.overlay = false;
+            that.inquiryList = response.data;
+            console.log(that.inquiryList.transactionStatusId);
+      
+            if (that.inquiryList.transactionStatusId == 1) {
+              if (that.defaultPage == 2) {
+                that.inquiry(that.ksherPay.mch_order_no);
               }
-              else if (response.data.txnStatus == "REQUESTED") {
-                if (self.defaultPage == 2) {
-                  self.inquiry(self.getQrcodeData.partnerTxnUid);
-                }
-
-              }
-              else {
-                self.overlay = true;
-                self.payComplated = false;
-                self.defaultPage = 3;
-
-                self.overlay = false;
-              }
-
             }
+            // console.log(data1);
+            if (that.inquiryList.transactionStatusId == 2) {
+              that.overlay = true;
+              that.payComplated = true;
+              that.defaultPage = 3;
+
+              that.overlay = false;
+            }
+            if (that.inquiryList.transactionStatusId == 3) {
+              that.overlay = true;
+              that.payComplated = false;
+              that.defaultPage = 3;
+
+              that.overlay = false;
+            }
+
           }
+          // if (response.status == 200) {
+
+          //   if (response.data.statusCode == "00") {
+
+          //     that.inquiryList = response.data;
+
+          //     if (response.data.txnStatus == "PAID") {
+
+          //       that.overlay = true;
+          //       that.payComplated = true;
+          //       that.defaultPage = 3;
+
+          //       that.overlay = false;
+          //     }
+          //     else if (response.data.txnStatus == "REQUESTED") {
+          //       if (that.defaultPage == 2) {
+          //         that.inquiry(that.ksherPay.mch_order_no);
+          //       }
+
+          //     }
+          //     else {
+          //       that.overlay = true;
+          //       that.payComplated = false;
+          //       that.defaultPage = 3;
+
+          //       that.overlay = false;
+          //     }
+
+          //   }
+          // }
         })
         .catch(function (error) {
-          self.MessageAlert = error;
-          self.TypeAlert = "error";
-          self.AlertDialog = true;
+          that.MessageAlert = error;
+          that.TypeAlert = "error";
+          that.AlertDialog = true;
         });
     },
 
     async cancel(data) {
-      let self = this;
-      self.overlay = true;
+      let that = this;
+      that.overlay = true;
       console.log(data);
-      let tempdata = {
-        partnerTxnUid: data,
-      };
+      that.$router.push("/MainMenu");
+      // let tempdata = {
+      //   partnerTxnUid: data,
+      // };
 
-      axios
-        .post(`${self.url}Payment/cancel`, tempdata)
-        .then(function (response) {
-          if (response.status == 200) {
+      // axios
+      //   .post(`${that.url}Payment/cancel`, tempdata)
+      //   .then(function (response) {
+      //     if (response.status == 200) {
 
-            if (response.data.statusCode == "00") {
-              // self.overlay = false;
-            }
-          }
-        })
-        .catch(function (error) {
-          self.MessageAlert = error;
-          self.TypeAlert = "error";
-          self.AlertDialog = true;
-        });
+      //       if (response.data.statusCode == "00") {
+      //         // that.overlay = false;
+      //       }
+      //     }
+      //   })
+      //   .catch(function (error) {
+      //     that.MessageAlert = error;
+      //     that.TypeAlert = "error";
+      //     that.AlertDialog = true;
+      //   });
     },
 
 
     Receipt() {
-      let self = this;
-      // self.$router.push("/PrintQr/" + "2024081316221890");
-      self.$router.push("/PrintQr/" + self.defaultPageLink);
+      let that = this;
+      // that.$router.push("/PrintQr/" + "2024081316221890");
+      that.$router.push("/PrintQr/" + that.defaultPageLink);
     },
 
 
     PaymentWithArgentoTechRush() {
-      let self = this;
-      if (self.Total == 0) {
+      let that = this;
+      if (that.Total == 0) {
         return;
       }
 
-      self.overlay = true;
+      that.overlay = true;
 
-      self.$router.push(
-        "/ThaiQR/" + self.invoiceNoCarparkid + ',' + self.Total
+      that.$router.push(
+        "/ThaiQR/" + that.invoiceNoCarparkid + ',' + that.Total
       );
 
 
     },
 
     InquiryPaymentWithArgento(invoiceNo) {
-      let self = this;
+      let that = this;
       let tempdata = {
         invoiceNo: invoiceNo,
-        amount: self.Total,
+        amount: that.Total,
       };
       axios
-        .post(`${self.url}Redemption/InquiryPaymentWithArgento`, tempdata)
+        .post(`${that.url}Redemption/InquiryPaymentWithArgento`, tempdata)
         .then(function (response) {
           if (response.data.status == 0) {
-            self.overlay = false;
+            that.overlay = false;
             let data1 = response.data.data.transactionStatusId;
 
             console.log(data1);
             if (data1 == 2) {
-              self.getParkingDetail(self.invoiceNoCarparkid);
-              self.dialog = true;
+              that.getParkingDetail(that.invoiceNoCarparkid);
+              that.dialog = true;
             }
             if (data1 == 3) {
-              self.getParkingDetail(self.invoiceNoCarparkid);
+              that.getParkingDetail(that.invoiceNoCarparkid);
             }
           }
         })
         .catch(function (error) {
-          self.MessageAlert = error;
-          self.TypeAlert = "error";
-          self.AlertDialog = true;
+          that.MessageAlert = error;
+          that.TypeAlert = "error";
+          that.AlertDialog = true;
         });
     },
 
     ClearDataAlert() {
-      let self = this;
-      self.AlertDialog = false;
-      self.TypeAlert = "";
-      self.MessageAlert = "";
+      let that = this;
+      that.AlertDialog = false;
+      that.TypeAlert = "";
+      that.MessageAlert = "";
     },
 
     BindingDataResponse(data) {
-      let self = this;
-      self.invoiceNoCarparkid = data.logId;
+      let that = this;
+      that.invoiceNoCarparkid = data.logId;
       if (data != null) {
         if (data.status != "Fail") {
-          self.TerminalID = data.terminalInId;
-          self.DatetimeIn = data.entryDateTime;
-          self.MemberType = data.memberTypeId;
-          self.CarType = data.vehicleTypeId;
-          self.TicketNo = data.ticketNo;
-          self.DateTime = new Date(data.entryDateTime).toLocaleDateString(
+          that.TerminalID = data.terminalInId;
+          that.DatetimeIn = data.entryDateTime;
+          that.MemberType = data.memberTypeId;
+          that.CarType = data.vehicleTypeId;
+          that.TicketNo = data.ticketNo;
+          that.DateTime = new Date(data.entryDateTime).toLocaleDateString(
             "en-us",
             {
               year: "numeric",
@@ -1094,33 +1250,39 @@ export default {
               day: "numeric",
             }
           );
-          self.TimeIn =
+          that.TimeIn =
             data.entryDateTime.split(" ").length > 0
               ? data.entryDateTime.split(" ")[1]
               : "";
-          self.TimeNow =
+          that.TimeNow =
             data.logDateTime.split(" ").length > 0
               ? data.logDateTime.split(" ")[1]
               : "";
-          self.TimeNowFull =
+          that.TimeNowFull =
             data.logDateTime.split(" ").length > 0
               ? data.logDateTime
               : "";
-          self.Duration = data.parkHH + " hrs " + data.parkMM + " mins";
-          self.CarLicense = data.plateNo;
-          self.VehicleName = data.vehicleTypeName;
-          self.RateCodeString = data.rateCode;
-          self.RateDetailTH = data.rateDetailTH;
-          self.RateDetailEN = data.rateDetailEN;
-          self.Total = data.total;
+          that.Duration = data.parkHH + " hrs " + data.parkMM + " mins";
+          that.CarLicense = data.plateNo;
+          that.VehicleName = data.vehicleTypeName;
+          that.RateCodeString = data.rateCode;
+          that.RateDetailTH = data.rateDetailTH;
+          that.RateDetailEN = data.rateDetailEN;
+          that.Total = data.total;
         } else {
-          self.MessageAlert = data.message;
-          self.TypeAlert = "error";
-          self.AlertDialog = true;
+          that.MessageAlert = data.message;
+          that.TypeAlert = "error";
+          that.AlertDialog = true;
         }
       }
-      self.overlay = false;
+      that.overlay = false;
       //
+    },
+
+
+    BackToMain() {
+      let that = this;
+      that.$router.push("/MainMenu");
     },
 
     numberWithCommas(x) {
