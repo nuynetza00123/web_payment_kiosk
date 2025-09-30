@@ -38,15 +38,15 @@
                           </v-row>
                           <v-row cols="12" md="12" justify="center">
                             <v-col cols="12" md="10" sm="10" xs="10" align="center">
-                              KING SQUARE DEVELOPMENT CO., LTD
+                              V. ONE TOWER
                             </v-col>
                             <v-col cols="12" md="10" sm="10" xs="10" align="left">
-                              775 Ratchadaphisek Rd, Bang Phong Phang,
+                              Phra Ram 9 Road, Huai Khwang, Bangkok 10310
                               <br />
 
                                Yan Nawa, Bangkok 10120 
                                <br/>
-                               Tel. 061 413 6222
+                               Tel. 065 254 6645
                               <br/>
                             </v-col>
                           </v-row>
