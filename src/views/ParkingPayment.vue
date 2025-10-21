@@ -327,7 +327,7 @@
                           </v-col>
                           <v-col cols="12" md="12" sm="12"
                             style="display: grid;justify-content: space-around;padding: 0;">
-                            <span style="font-size: 15px;color: #3A5408;">Download</span>
+                            <span style="font-size: 15px;color: #3A5408;">Receipt</span>
 
                           </v-col>
                         </v-card>
