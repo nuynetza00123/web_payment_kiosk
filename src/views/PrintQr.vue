@@ -427,7 +427,7 @@ export default {
       html2canvas(document.querySelector("#capture"), {
         width: 1200,
         scale: 5,
-      }).then((canvas) => {
+      }, { backgroundColor: "#ffffff", scale: 2 }).then((canvas) => {
         const base64 = canvas.toDataURL("image/png");
 
         var tWindow = window.open("");
