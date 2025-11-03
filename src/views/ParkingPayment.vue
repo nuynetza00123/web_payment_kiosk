@@ -38,7 +38,7 @@
                     </v-col>
                     <v-col cols="10" md="10" sm="10">
                       {{ $t("message.ParkingArea") }} <br>
-                      <span style="font-size: 20px;font-weight: 800;">V-ONE</span>
+                      <span style="font-size: 20px;font-weight: 800;">V.ONE</span>
                     </v-col>
                   </v-row>
                   <v-divider style="margin-top: 20px;"></v-divider>
@@ -363,7 +363,7 @@
                           </v-col>
                           <v-col cols="12" md="12" sm="12"
                             style="display: grid;justify-content: space-around;padding: 0;">
-                            <span style="font-size: 15px;color: #00B5E4;">Download</span>
+                            <span style="font-size: 15px;color: #00B5E4;">Print Receipt</span>
 
                           </v-col>
                         </v-card>
@@ -1085,7 +1085,7 @@ export default {
             that.overlay = false;
             that.inquiryList = response.data;
             console.log(that.inquiryList.transactionStatusId);
-      
+
             if (that.inquiryList.transactionStatusId == 1) {
               if (that.defaultPage == 2) {
                 that.inquiry(that.ksherPay.mch_order_no);
@@ -1242,14 +1242,7 @@ export default {
           that.MemberType = data.memberTypeId;
           that.CarType = data.vehicleTypeId;
           that.TicketNo = data.ticketNo;
-          that.DateTime = new Date(data.entryDateTime).toLocaleDateString(
-            "en-us",
-            {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            }
-          );
+          that.DateTime = this.formatBuddhistToChristianDate(data.entryDateTime); 
           that.TimeIn =
             data.entryDateTime.split(" ").length > 0
               ? data.entryDateTime.split(" ")[1]
@@ -1277,6 +1270,26 @@ export default {
       }
       that.overlay = false;
       //
+    },
+
+
+    formatBuddhistToChristianDate(buddhistDateString) {
+      // แยกส่วนวันที่และเวลา
+      const [datePart, timePart] = buddhistDateString.split(' ');
+      const [buddhistYear, month, day] = datePart.split('-');
+      const christianEraYear = parseInt(buddhistYear) - 543;
+      const christianEraDateString = `${christianEraYear}-${month}-${day} ${timePart}`;
+      const dateObject = new Date(christianEraDateString);
+
+      // ฟอร์แมตตามที่คุณต้องการ
+      return dateObject.toLocaleDateString(
+        "en-us",
+        {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        }
+      );
     },
 
 

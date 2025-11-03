@@ -37,7 +37,7 @@ const messages = {
       TicketNo: "Ticket No.",
       DateTime: "Date",
       DateTimeIn: "Time In",
-      TimeIn: "TimeIn",
+      TimeIn: "Time In",
       Duration: "Duration",
       CarLicense: "Car License",
       LicensePlate: "License Plate",
