@@ -363,7 +363,7 @@
                           </v-col>
                           <v-col cols="12" md="12" sm="12"
                             style="display: grid;justify-content: space-around;padding: 0;">
-                            <span style="font-size: 15px;color: #00B5E4;">Print Receipt</span>
+                            <span style="font-size: 15px;color: #00B5E4;">Receipt</span>
 
                           </v-col>
                         </v-card>
