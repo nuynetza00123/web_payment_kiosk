@@ -5,7 +5,7 @@
         <v-container>
           <v-row>
             <v-card elevation="0" width="900" height="1600" style="
-                  background-color: #FCFBF5;
+                  background-color: #F5F5F5;
                 " class="align-center pa-4 mx-auto">
               <!-- <ChangeLanguage /> -->
               <v-row style="    display: flex;
@@ -38,15 +38,16 @@
                           </v-row>
                           <v-row cols="12" md="12" justify="center">
                             <v-col cols="12" md="10" sm="10" xs="10" align="center">
-                              V. ONE TOWER
+                              V.ONE TOWER
                             </v-col>
-                            <v-col cols="12" md="10" sm="10" xs="10" align="left">
-                              Phra Ram 9 Road, Huai Khwang, Bangkok 10310
+                            <v-col cols="12" md="11" sm="11" xs="11" align="center">
+                              V.73 COMPANY LIMITED
                               <br />
-
-                               Yan Nawa, Bangkok 10120 
+                              123 Phra Ram 9 Road, Huai Khwang, Bangkok 10310
                                <br/>
-                               Tel. 065 254 6645
+                               TAX ID : 0105549001011
+                              <br/>
+                               Tel. : 065 254 6645
                               <br/>
                             </v-col>
                           </v-row>
@@ -61,7 +62,7 @@
                               TAX INVOICE (ABB.) ID
                             </v-col>
                             <v-col cols="6" md="4" sm="4" align="right" style="padding-top: 0px;padding-bottom: 0px;">
-                              {{ DetailsReceipt.trn_SaleTaxNo }}
+                              {{ '' }}
                             </v-col>
 
                             <v-col cols="6" md="5" sm="5" align="left" style="padding-top: 0px;padding-bottom: 0px;">
@@ -74,7 +75,7 @@
                               POS NO
                             </v-col>
                             <v-col cols="6" md="5" sm="5" align="right" style="padding-top: 0px;padding-bottom: 0px;">
-                              {{ DetailsReceipt.trn_Remark }}
+                              {{ "E000000000" }}
                             </v-col>
                             <v-col cols="6" md="6" sm="6" align="left" style="padding-top: 0px;padding-bottom: 0px;">
                               BILL DATE
