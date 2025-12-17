@@ -530,9 +530,9 @@
               @click="inquiry(ksherPay.mch_order_no)">
 
               {{ $t("message.Pleasepress") }}
-              <v-progress-circular indeterminate size="35" style="margin-left: 10px;">
+              <!-- <v-progress-circular indeterminate size="35" style="margin-left: 10px;">
                 <span style="font-size: 20px;">{{ timerCount }}</span>
-              </v-progress-circular>
+              </v-progress-circular> -->
             </v-card>
           </v-col>
 
@@ -542,9 +542,9 @@
               @click="BackToMain()">
 
               {{ $t("message.mainPage") }}
-              <v-progress-circular indeterminate size="35" style="margin-left: 10px;">
+              <!-- <v-progress-circular indeterminate size="35" style="margin-left: 10px;">
                 <span style="font-size: 20px;">{{ timerCount }}</span>
-              </v-progress-circular>
+              </v-progress-circular> -->
             </v-card>
           </v-col>
 
@@ -631,7 +631,7 @@ export default {
       images: {
         logo: "",
       },
-      timerCount: 60,
+      timerCount: 180,
       promptpaylogo: promptpaylogo,
       truemoney: truemoney,
       logotrue: logotrue,
@@ -708,7 +708,7 @@ export default {
       parkingData: new ParkingData(),
       getQrcodeData: new requestData(),
       qrImage: '',
-      countDown: 600,
+      countDown: 180,
       payComplated: false,
       days: null,
       hours: null,
@@ -979,7 +979,7 @@ export default {
             if (response.data.code == 0) {
               console.log(response.data.data);
               that.ksherPay = response.data.data;
-              that.countDown = 600;
+              that.countDown = 180;
               that.qrImage = response.data.data.imgdat;
               // that.timerCount = 60;
 
@@ -1034,7 +1034,7 @@ export default {
           if (response.status == 200) {
             that.overlay = false;
             if (response.data.statusCode == "00") {
-              that.countDown = 600;
+              that.countDown = 180;
               // that.timerCount = 60;
 
               that.getQrcodeData = response.data;

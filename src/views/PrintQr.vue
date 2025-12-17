@@ -43,9 +43,9 @@
                             <v-col cols="12" md="11" sm="11" xs="11" align="center">
                               V.73 COMPANY LIMITED
                               <br />
-                              123 Phra Ram 9 Road, Huai Khwang, Bangkok 10310
+                              123 Phra Ram 9 Road, Huai Khwang, 
                                <br/>
-                               TAX ID : 0105549001011
+                                Huai Khwang, Bangkok 10310
                               <br/>
                                Tel. : 065 254 6645
                               <br/>
@@ -62,7 +62,7 @@
                               TAX INVOICE (ABB.) ID
                             </v-col>
                             <v-col cols="6" md="4" sm="4" align="right" style="padding-top: 0px;padding-bottom: 0px;">
-                              {{ '' }}
+                              {{ '0105549001011' }}
                             </v-col>
 
                             <v-col cols="6" md="5" sm="5" align="left" style="padding-top: 0px;padding-bottom: 0px;">
