@@ -75,7 +75,7 @@
                               POS NO
                             </v-col>
                             <v-col cols="6" md="5" sm="5" align="right" style="padding-top: 0px;padding-bottom: 0px;">
-                              {{ "E000000000" }}
+                              {{ "E020100003A0041" }}
                             </v-col>
                             <v-col cols="6" md="6" sm="6" align="left" style="padding-top: 0px;padding-bottom: 0px;">
                               BILL DATE
