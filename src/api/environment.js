@@ -1,6 +1,8 @@
 const environment = {
     // apiUrl: 'https://localhost:44368/api/', // Local
     apiUrl: 'https://vone-apipayment.fs-omc.io/api/', // Local
+    apiUrlcarpark: 'https://vone-apicarpark.fs-omc.io/api/', // Local
+    
     // apiUrl: 'https://kingsquare-apipayment.fs-omc.io/api/' , // 
     // apiUrl: 'http://10.50.1.10:82/api/', // Local
     // apiUrl: 'http://192.168.0.1:85/api/', // Local
