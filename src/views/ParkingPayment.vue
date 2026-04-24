@@ -909,7 +909,8 @@ export default {
       let tempdata = {
         logId: self.parkingData.logId,
         ticketNo: self.parkingData.ticketNo,
-        plateNo: self.parkingData.plateNo,
+        plateNo: "Kiosk Payment",
+        // plateNo: self.parkingData.plateNo,
         total: self.parkingData.total,
       };
 
