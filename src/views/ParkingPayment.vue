@@ -798,7 +798,7 @@ export default {
           lostCard: false,
         };
         await axios
-          .post(`${self.url}Redemption/GetParkingDetail`, tempdata)
+          .post(`${self.urlCarpark}Redemption/GetParkingDetail`, tempdata)
           .then(function (response) {
             if (response.data.status == 0) {
               self.Total = response.data.data[0].Total;

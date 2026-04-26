@@ -90,7 +90,7 @@ export default {
   data() {
     return {
       url: enurl.apiUrl,
-      urlCP: enurl.apiUrlCarpark,
+      urlCarpark: enurl.apiUrlcarpark,
       settingUrl: enurl.settingUrl,
       DefaultLogo: "@/assets/logo192.png",
       DefaultBG: "@/assets/1D2939.png",
@@ -194,7 +194,7 @@ export default {
         lostCard: false,
       };
       axios
-        .post(`${self.url}Redemption/GetParkingDetail`, temp)
+        .post(`${self.urlCarpark}Redemption/GetParkingDetail`, temp)
         .then(function (response) {
           if (response.data.status == 0) {
             // console.log(response.data.data);

@@ -245,6 +245,7 @@ export default {
   data() {
     return {
       url: enurl.apiUrl,
+      urlcarpark: enurl.apiUrlcarpark,
       settingUrl: enurl.settingUrl,
       DefaultLogo: "@/assets/logo192.png",
       DefaultBG: "@/assets/1D2939.png",
@@ -309,7 +310,7 @@ export default {
           lostCard: false,
         };
         await axios
-          .post(`${self.url}Redemption/GetParkingDetail`, tempdata)
+          .post(`${self.urlcarpark}Redemption/GetParkingDetail`, tempdata)
           .then(function(response) {
             if (response.data.status == 0) {
               self.Total = response.data.data[0].Total;
