@@ -190,6 +190,7 @@ export default {
       self.text = self.invoiceNo;
       localStorage.setItem("LogId", self.invoiceNo);
       let temp = {
+        // logid: "2026042410111001",
         logid: self.invoiceNo,
       };
       axios

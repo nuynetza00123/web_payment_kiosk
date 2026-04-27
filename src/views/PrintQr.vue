@@ -31,44 +31,33 @@
                   <v-col cols="12" md="12" sm="12" align="center" class="rounded-sm">
                     <v-row cols="12" xs="12" sm="12" md="12" justify="center" class="mt-2">
                       <v-col cols="12" md="10" sm="10" align="center">
-                        <v-card v-if="show"  elevation="7" id="capture" class="mx-auto" height="auto" width="800"
+                        <v-card v-if="show" elevation="7" id="capture" class="mx-auto" height="auto" width="800"
                           style="padding: 10px;background-color: white;font-size: 26px;color: black;font-weight: bolder;">
                           <v-row cols="12" sm="12" md="12" justify="center">
                             <!-- <img class="mt-5" :src="imagesLogo" width="300" height="auto" /> -->
                           </v-row>
                           <v-row cols="12" md="12" justify="center">
                             <v-col cols="12" md="10" sm="10" xs="10" align="center">
-                              KING SQUARE DEVELOPMENT CO., LTD
-                            </v-col>
-                            <v-col cols="12" md="10" sm="10" xs="10" align="left">
-                              775 Ratchadaphisek Rd, Bang Phong Phang,
                               <br />
-
-                               Yan Nawa, Bangkok 10120 
-                               <br/>
-                               Tel. 061 413 6222
-                              <br/>
+                              King square Co., Ltd.
+                              <br />
+                              Receipt /Tax Invoice (ABB)
+                              <br />
+                              เลขที่ 775 ถนนรัชดาภิเษก แขวงบางโพงพาง
+                              <br />
+                              เขตยานนาวา กรุงเทพมหานคร
+                              <br />
+                              (Branch 00001)
+                              <br />
                             </v-col>
                           </v-row>
                           <v-row cols="12" md="12" sm="12" justify="center">
+
                             <v-col cols="6" md="6" sm="6" align="left" style="padding-top: 0px;padding-bottom: 0px;">
-                              TERMINAL ID
-                            </v-col>
-                            <v-col cols="6" md="4" sm="4" align="right" style="padding-top: 0px;padding-bottom: 0px;">
-                              {{ DetailsReceipt.trn_Terminal_ID }}
-                            </v-col>
-                            <v-col cols="6" md="6" sm="6" align="left" style="padding-top: 0px;padding-bottom: 0px;">
-                              TAX INVOICE (ABB.) ID
+                              TAX ID.
                             </v-col>
                             <v-col cols="6" md="4" sm="4" align="right" style="padding-top: 0px;padding-bottom: 0px;">
                               {{ DetailsReceipt.trn_SaleTaxNo }}
-                            </v-col>
-
-                            <v-col cols="6" md="5" sm="5" align="left" style="padding-top: 0px;padding-bottom: 0px;">
-                              TAX NO
-                            </v-col>
-                            <v-col cols="6" md="5" sm="5" align="right" style="padding-top: 0px;padding-bottom: 0px;">
-                              {{ DetailsReceipt.trn_Tax_No }}
                             </v-col>
                             <v-col cols="6" md="5" sm="5" align="left" style="padding-top: 0px;padding-bottom: 0px;">
                               POS NO
@@ -77,13 +66,28 @@
                               {{ DetailsReceipt.trn_Remark }}
                             </v-col>
                             <v-col cols="6" md="6" sm="6" align="left" style="padding-top: 0px;padding-bottom: 0px;">
-                              BILL DATE
+                              DATE/TIME
                             </v-col>
                             <v-col cols="6" md="4" sm="4" align="right" style="padding-top: 0px;padding-bottom: 0px;">
                               {{
                                 ChangeFormatDate(DetailsReceipt.trn_CreateTime)
                               }}
                             </v-col>
+                            <v-col cols="6" md="5" sm="5" align="left" style="padding-top: 0px;padding-bottom: 0px;">
+                              TAX INVOICE NO.
+                            </v-col>
+                            <v-col cols="6" md="5" sm="5" align="right" style="padding-top: 0px;padding-bottom: 0px;">
+                              {{ DetailsReceipt.trn_Tax_No }}
+                            </v-col>
+                            <v-col cols="6" md="6" sm="6" align="left" style="padding-top: 0px;padding-bottom: 0px;">
+                              TERMINAL NAME
+                            </v-col>
+                            <v-col cols="6" md="4" sm="4" align="right" style="padding-top: 0px;padding-bottom: 0px;">
+                              {{ DetailsReceipt.trn_Terminal_ID == "301" ? "Web Payment" :
+                                DetailsReceipt.trn_Terminal_ID == "401" ? "Kiosk Payment" : DetailsReceipt.trn_Terminal_ID
+                              }}
+                            </v-col>
+
                             <v-col cols="6" md="6" sm="6" align="left" style="padding-top: 0px;padding-bottom: 0px;">
                               USER ID
                             </v-col>
@@ -112,7 +116,7 @@
                               }}
                             </v-col>
                             <v-col cols="6" md="6" sm="6" align="left" style="padding-top: 0px;padding-bottom: 0px;">
-                              PAID TIME
+                              EXIT TIME
                             </v-col>
                             <v-col cols="6" md="4" sm="4" align="right" style="padding-top: 0px;padding-bottom: 0px;">
                               {{
@@ -133,14 +137,14 @@
                                   .padStart(2, "0")
                               }}
                             </v-col>
-                            <v-col cols="6" md="6" sm="6" align="left" style="padding-top: 0px;padding-bottom: 0px;">
+                            <!-- <v-col cols="6" md="6" sm="6" align="left" style="padding-top: 0px;padding-bottom: 0px;">
                               STAMP
                             </v-col>
                             <v-col cols="6" md="4" sm="4" align="right" style="padding-top: 0px;padding-bottom: 0px;">
                               {{ DetailsReceipt.trn_Rate_Code }}
-                            </v-col>
+                            </v-col> -->
                             <v-col cols="6" md="6" sm="6" align="left" style="padding-top: 0px;padding-bottom: 0px;">
-                              SUBTOTAL (BAHT)
+                              SUB TOTAL (BAHT)
                             </v-col>
                             <v-col cols="6" md="4" sm="4" align="right" style="padding-top: 0px;padding-bottom: 0px;">
                               {{ DetailsReceipt.trn_SubTotal }}
@@ -158,22 +162,24 @@
                               {{ DetailsReceipt.trn_Total }}
                             </v-col>
                             <v-col cols="6" md="6" sm="6" align="left" style="padding-top: 0px;padding-bottom: 0px;">
-                              VAT
+                              VAT 7% INCLUDE (BAHT)
                             </v-col>
                             <v-col cols="6" md="4" sm="4" align="right" style="padding-top: 0px;padding-bottom: 0px;">
                               {{ DetailsReceipt.trn_Vat }}
                             </v-col>
-                            <v-col cols="6" md="6" sm="6" align="left" style="padding-top: 0px;padding-bottom: 0px;">
-                              TOTAL VAT INCLUDED
+                            <v-col cols="7" md="7" sm="7" align="left" style="padding-top: 0px;padding-bottom: 0px;">
+                              TOTAL VAT INCLUDED (BAHT)
                             </v-col>
-                            <v-col cols="6" md="4" sm="4" align="right" style="padding-top: 0px;padding-bottom: 0px;">
+                            <v-col cols="3" md="3" sm="3" align="right" style="padding-top: 0px;padding-bottom: 0px;">
                               {{ DetailsReceipt.trn_Amount }}
                             </v-col>
                           </v-row>
                           <br />
-                          <hr style="width: 80%;" />
-
                           <v-col cols="12" md="12" align="center">
+                            **VAT INCLUDED**
+                            <br />
+                            ----------------------------------------
+                            <br />
                             THANK YOU FOR PARKING
                           </v-col>
                           <v-row style="height: 10px;"> </v-row>
