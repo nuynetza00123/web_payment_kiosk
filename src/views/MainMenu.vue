@@ -96,6 +96,22 @@
         </v-card-text>
       </v-card>
     </v-dialog>
+    <v-dialog v-model="showTerminalDialog" persistent max-width="500">
+      <v-card>
+        <v-card-title class="headline">{{'Select Terminal' }}</v-card-title>
+        <v-card-text>
+          <v-row>
+            <v-col cols="12">
+              <v-text-field v-model="selectedTerminal" label="Terminal ID" outlined></v-text-field>
+            </v-col>
+          </v-row>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="#3A5408" class="white--text" @click="SaveTerminal()">{{ $t("message.Save") || 'Save' }}</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
 
   </div>
 
@@ -119,6 +135,9 @@ export default {
       Datetime: "",
       LoadingDialog: false,
       padless: true,
+      // terminal selection
+      selectedTerminal: "",
+      showTerminalDialog: false,
     };
   },
 
@@ -126,6 +145,18 @@ export default {
 
 
   mounted: function () {
+
+
+    
+
+
+    // Check terminalID and prompt user if missing
+    let terminal = localStorage.getItem("terminalID");
+    if (!terminal || terminal === '') {
+      this.selectedTerminal = "";
+      this.showTerminalDialog = true;
+    }
+
     if (localStorage.getItem("LogId") == null) {
       localStorage.setItem("LogId", '');
     } else if (localStorage.getItem("LogId") != '') {
@@ -210,6 +241,12 @@ export default {
     GotoScanReprint() {
       let self = this;
       self.$router.push("/RePrintQrcode");
+    },
+    SaveTerminal() {
+      if (this.selectedTerminal && this.selectedTerminal.toString().trim() !== "") {
+        localStorage.setItem("terminalID", this.selectedTerminal.toString().trim());
+        this.showTerminalDialog = false;
+      }
     },
   },
 };

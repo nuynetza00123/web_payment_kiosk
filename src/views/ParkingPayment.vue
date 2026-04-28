@@ -906,9 +906,10 @@ export default {
       let self = this;
       self.overlay = true;
 
+      let terminalId = localStorage.getItem("terminalID");
       let tempdata = {
         logId: self.parkingData.logId,
-        ticketNo: self.parkingData.ticketNo,
+        ticketNo: terminalId,
         plateNo: "Kiosk Payment",
         // plateNo: self.parkingData.plateNo,
         total: self.parkingData.total,
